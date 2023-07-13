@@ -3,6 +3,7 @@
 
 use App\Http\Controllers\ViewController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\EmbassyController;
 use Illuminate\Support\Facades\Route;
 
@@ -35,6 +36,12 @@ Route::any('/user/embassy_list', [UserController::class, 'embassy_list'])->name(
 Route::any('/user/update', [UserController::class, 'update'])->name('user/update');
 Route::any('/user/print/{id}', [UserController::class, 'printer'])->name('user/print');
 // Route::post('/user/addcandidate', 'CandidateController@addCandidate')->name('user.addcandidate');
+
+#admin routes
+Route::any('/admin/index', [AdminController::class, 'index'])->name('admin');
+Route::any('/ádmin/edit/{id}', [AdminController::class, 'edit'])->name('admin/edit');
+Route::any('/ádmin/view/{id}', [AdminController::class, 'view'])->name('admin/view');
+Route::any('/ádmin/delete/{id}', [AdminController::class, 'delete'])->name('admin/delete');
 
 #embassy routes
 Route::get('/user/embassy/{id}', [EmbassyController::class, 'sendcandidate'])->name('user/embassy');

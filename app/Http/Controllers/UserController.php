@@ -16,7 +16,7 @@ class UserController extends Controller
            
             $candidates = DB::table('candidates')
                     ->leftJoin('visas', 'candidates.id', '=', 'visas.candidate_id')
-                    ->select('candidates.*', 'visas.visa_no', 'visas.mofa_no')->where('candidates.agency', '=', Session::get('user'))
+                    ->select('candidates.*', 'visas.visa_no', 'visas.mofa_no', 'visas.spon_id')->where('candidates.agency', '=', Session::get('user'))
                     ->get();
             // dd($candidates);
             return view('user.index', compact('candidates'));
@@ -41,6 +41,7 @@ class UserController extends Controller
             $candidate->police = $request->police_licence;
             $candidate->driving_licence = $request->driving_licence;
             $candidate->is_delete = 0;
+            $candidate->gender = $request->gender;
             $candidate->agency = Session::get('user');
             // dd(Session::get('user'));
             // dd($candidate->save());
@@ -87,9 +88,11 @@ class UserController extends Controller
             $visa->okala_no = $request->input('okala_no');
             $visa->musaned_no = $request->input('musaned_no');
             // dd($visa->save());
-            $flag = Visa::where('candidate_id', $id)->first();
+
+            $candidate = Candidates::find($id);
+            $flag = Visa::where('candidate_id', $id)->exists();
             // dd(1,$request->all(), 2, $id, 3, $flag);
-            if ($flag == null){
+            if ($flag == false){
                 if($visa->save()){
                     return response()->json([
                         'title'=> 'Success',
@@ -105,7 +108,7 @@ class UserController extends Controller
                         'success' => false,
                         'icon' => 'error',
                         'message' => 'Cannot add',
-                        // 'redirect_url' => 'user/index'
+                        'redirect_url' => 'user/index'
                     ]);
                 }
             }
@@ -128,6 +131,7 @@ class UserController extends Controller
         $candidates = DB::table('candidates')
                     ->leftJoin('visas', 'candidates.id', '=', 'visas.candidate_id')
                     ->select('candidates.*', 'visas.*')
+                    ->where('candidates.agency', '=', Session::get('user'))
                     ->get();
         // dd($candidates);
         return view('user.embassy_list', compact('candidates'));
@@ -197,7 +201,8 @@ class UserController extends Controller
     }
 
     public function visa_edit($id, Request $request){
-        $visa = Visa::where('id', $id)->first();
+        $visa = Visa::where('candidate_id', $id)->first();
+        // dd($visa,2, $id);
         if($visa){
             $visa->visa_no = $request->input('visa_no');
             $visa->candidate_id = $id;
@@ -212,7 +217,8 @@ class UserController extends Controller
             $visa->mofa_date = $request->input('mofa_date');
             $visa->okala_no = $request->input('okala_no');
             $visa->musaned_no = $request->input('musaned_no');
-            if(visa->save()){
+            // dd($visa->save());
+            if($visa->save()){
                 return response()->json([
                     'title'=> 'Success',
                     'success' => true,

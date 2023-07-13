@@ -4,8 +4,7 @@
    @include('layout/head')
 </head>
 <body>
-    <div class="container mt-5">
-        <form id="signupform" action="{{route('signup')}}" method="post">
+    <div<form id="signupform" action="{{route('signup')}}" method="post">
             @csrf
             <!-- 2 column grid layout with text inputs for the first and last names -->
             <div class="row mb-4">
@@ -68,7 +67,8 @@
           
             <!-- Submit button -->
             <button type="submit" class="btn btn-primary btn-block mb-4">Place order</button>
-        </form>
+        </form> class="container mt-5">
+        
     </div>
     @include('layout/script')
     <script>

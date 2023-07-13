@@ -15,6 +15,7 @@ class ViewController extends Controller
            $email = request('email');
            $pass = request('pass');
            $flag = $user = User::where('email', $email)->exists();
+        //    dd($flag);
            if($flag){
                $user = User::where('email', $email)->first();
                $actualpass = decrypt($user->password);
@@ -22,13 +23,25 @@ class ViewController extends Controller
                if($actualemail == $email && $actualpass == $pass){
                     session_start();
                     session(['user' => $actualemail, 'role' => $user->role]);	
-                    return response()->json([
-                        'title'=> 'Success',
-                        'success' => false,
-                        'icon' => 'success',
-                        'message' => 'Successfully logged in',
-                        'redirect_url' => 'user/index'
-                     ]);
+                    if($user->role == 'user'){
+                        return response()->json([
+                            'title'=> 'Success',
+                            'success' => true,
+                            'icon' => 'success',
+                            'message' => 'Successfully logged in',
+                            'redirect_url' => 'user/index'
+                         ]);
+                    }
+                    else{
+                        return response()->json([
+                            'title'=> 'Success',
+                            'success' => true,
+                            'icon' => 'success',
+                            'message' => 'Successfully logged in',
+                            'redirect_url' => 'admin/index'
+                         ]);
+                    }
+                   
                }
                else{
                 return response()->json([
