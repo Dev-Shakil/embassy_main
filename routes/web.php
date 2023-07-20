@@ -35,8 +35,9 @@ Route::any('/user/visa_edit/{id}', [UserController::class, 'visa_edit'])->name('
 Route::any('/user/embassy_list', [UserController::class, 'embassy_list'])->name('user/embassy_list');
 Route::any('/user/update', [UserController::class, 'update'])->name('user/update');
 Route::any('/user/print/{id}', [UserController::class, 'printer'])->name('user/print');
+Route::any('/user/get', [UserController::class, 'get'])->name('getpassport');
 // Route::post('/user/addcandidate', 'CandidateController@addCandidate')->name('user.addcandidate');
-
+Route::any('user/logout', [UserController::class, 'logout'])->name('user/logout');
 #admin routes
 Route::any('/admin/index', [AdminController::class, 'index'])->name('admin');
 Route::any('/ádmin/edit/{id}', [AdminController::class, 'edit'])->name('admin/edit');

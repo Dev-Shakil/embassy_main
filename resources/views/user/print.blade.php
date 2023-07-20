@@ -43,7 +43,7 @@
     </script>
 </head>
 <body style="position: relative">
-    @php
+    <!-- @php
         $dob = $candidates[0]->date_of_birth;
         $birthdate = new DateTime($dob);
         $currentDate = new DateTime();
@@ -67,18 +67,18 @@
         if ($days > 0) {
             $age .= ($age ? ", " : "") . $days . " day" . ($days > 1 ? "s" : "");
         }
-    @endphp
-    <div class=" my-auto" style="position: sticky; top:50%; left:5px">
+    @endphp -->
+    <div class=" " style="position: sticky; top:50%; left:5px">
     <button onclick="window.print();" class="noPrint p-5 bg-blue-500 text-white px-14 text-xl font-bold rounded-xl shadow-xl">
         Print
     </button></div>
     <!-- ksa 1st page design starts -->
-    <div class="  bg-white border-black  h-[100%]  w-[1050px]  mx-auto text-lg ">
+    <div class="  bg-white border-black  h-[100%]  w-[1050px]  mx-auto  ">
         <div class="flex justify-between  mb-[10px]">
-            <div>
+            <div class="">
               <div class="h-[180px] w-[170px] border-1 border border-black " ></div>
             </div>
-            <div  class="flex justify-end ml-20">
+            <div  class="flex flex-col justify-start items-end ml-[170px] relative">
               <!-- <img
                 src="/Saudi_Arabia_State.png"
                 class="ml-8 h-[100px] "
@@ -86,12 +86,12 @@
                 width={100}
                 height={50}
               />  -->
-            <div>
-              <svg id="barcode1" class="w-[250px] "></svg>
-              <span class='text-xl ml-2'>Visa Date: {{$candidates[0]->visa_date}}</span>
+           
+              <svg id="barcode1" class="w-[200px] "></svg>
+              <span class=' w-[190px] absolute bottom-11 left-6'>    Visa Date:  {{$candidates[0]->visa_date2}}</span>
+           
             </div>
-            </div>
-            <div  class="w- text-end text-xl">
+            <div  class="w-[300px] text-end text-xl">
               <p class="font-bold text-4xl">
                 {{$candidates[0]->mofa_no}}
               </p>
@@ -1229,12 +1229,19 @@
             fontSize:30,
             width: 4,
             height: 110,
+            fontSize:30,
+            textMargin:10,
+            text:"Visa No: {{$candidates[0]->visa_no}}",
         });;
         JsBarcode("#passport_no", "{{$candidates[0]->passport_number}}", {
             fontSize:30,
             width: 5,
             height: 80,
+            textMargin:10,
+            text:"Passport No: {{$candidates[0]->passport_number}}"
         });;
     </script>
 </body>
 </html>
+
+

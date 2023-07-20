@@ -205,81 +205,152 @@
                       <div class="px-10 gap-x-10 grid md:grid-cols-2">
                         <div class="py-1">
                         <div class="font-bold text-lg">Passenger Name</div>
-                        <input type="text" class="p-2 rounded-lg w-full form-control" name="pname" id="pname" value="{{$candidate->name}}" placeholder="Enter Passenger Name" />
+                        <input type="text" class="p-2 rounded-lg w-full uppercase form-control" name="pname" id="pname" value="{{$candidate->name}}" placeholder="Enter Passenger Name" />
                       </div>
                       <div class="py-1">
                         <div class="font-bold text-lg">Passport Number</div>
-                        <input type="text" class="p-2 rounded-lg w-full form-control" id="pnumber" name="pnumber" value={{$candidate->passport_number}} required placeholder="Enter Passport Number" />
+                        <input type="text" class="p-2 rounded-lg w-full uppercase form-control" minlength="0" maxlength="9" id="pnumber" name="pnumber" value={{$candidate->passport_number}} required placeholder="Enter Passport Number" />
                       </div>
                       <div class="py-1">
                         <div class="font-bold text-lg">Passport Issue Date</div>
-                        <input type="date" class="p-2 rounded-lg w-full form-control" placeholder="Enter Passport Issue Date" name="pass_issue_date" id="pass_issue_date" value={{$candidate->passport_issue_date}} />
+                        <input type="text" class="p-2 rounded-lg w-full uppercase form-control" placeholder="Enter Passport Issue Date" name="pass_issue_date" id="pass_issue_date" value={{$candidate->passport_issue_date}} />
                       </div>
                       <div class="py-1">
                         <div class="font-bold text-lg">Passport Expire Date</div>
-                        <input type="date" class="p-2 rounded-lg w-full form-control" placeholder="Enter Passport Expire Date" name="pass_expire_date" id="pass_expire_date" value={{$candidate->passport_expire_date}} />
+                        <input type="text" class="p-2 rounded-lg w-full uppercase form-control" placeholder="Enter Passport Expire Date" name="pass_expire_date" id="pass_expire_date" value={{$candidate->passport_expire_date}} />
                       </div>
                       <div class="py-1">
                         <div class="font-bold text-lg">Date Of Birth</div>
-                        <input type="date" class="p-2 rounded-lg w-full form-control" placeholder="Enter Date Of Birth"  name="date_of_birth" id="date_of_birth" value={{$candidate->date_of_birth}} />
+                        <input type="date" class="p-2 rounded-lg w-full uppercase form-control" placeholder="Enter Date Of Birth"  name="date_of_birth" id="date_of_birth" value={{$candidate->date_of_birth}} />
                       </div>
                       <div class="py-1">
                         <div class="font-bold text-lg">Place Of Birth</div>
-                        <input type="text" class="p-2 rounded-lg w-full form-control" placeholder="Place Of Birth" name="place_of_birth" id="place_of_birth" value={{$candidate->place_of_birth}} />
+                        <input type="text" class="p-2 rounded-lg w-full uppercase form-control" placeholder="Place Of Birth" name="place_of_birth" list="districts" id="place_of_birth" value={{$candidate->place_of_birth}} />
+                        <datalist id="districts">
+                          <option value="Bagerhat">
+                          <option value="Barishal">
+                          <option value="Jashore">
+                          <option value="Chattogram">
+                          <option value="Cumilla">
+                          <option value="Bogura">
+                          <option value="Bandarban">
+                          <option value="Barguna">
+                          <option value="Barisal">
+                          <option value="Bhola">
+                          <option value="Bogra">
+                          <option value="Brahmanbaria">
+                          <option value="Chandpur">
+                          <option value="Chapainawabganj">
+                          <option value="Chittagong">
+                          <option value="Chuadanga">
+                          <option value="Comilla">
+                          <option value="Cox's Bazar">
+                          <option value="Dhaka">
+                          <option value="Dinajpur">
+                          <option value="Faridpur">
+                          <option value="Feni">
+                          <option value="Gaibandha">
+                          <option value="Gazipur">
+                          <option value="Gopalganj">
+                          <option value="Habiganj">
+                          <option value="Jamalpur">
+                          <option value="Jessore">
+                          <option value="Jhalokati">
+                          <option value="Jhenaidah">
+                          <option value="Joypurhat">
+                          <option value="Khagrachhari">
+                          <option value="Khulna">
+                          <option value="Kishoreganj">
+                          <option value="Kurigram">
+                          <option value="Kushtia">
+                          <option value="Lakshmipur">
+                          <option value="Lalmonirhat">
+                          <option value="Madaripur">
+                          <option value="Magura">
+                          <option value="Manikganj">
+                          <option value="Meherpur">
+                          <option value="Moulvibazar">
+                          <option value="Munshiganj">
+                          <option value="Mymensingh">
+                          <option value="Naogaon">
+                          <option value="Narail">
+                          <option value="Narayanganj">
+                          <option value="Narsingdi">
+                          <option value="Natore">
+                          <option value="Netrokona">
+                          <option value="Nilphamari">
+                          <option value="Noakhali">
+                          <option value="Pabna">
+                          <option value="Panchagarh">
+                          <option value="Patuakhali">
+                          <option value="Pirojpur">
+                          <option value="Rajbari">
+                          <option value="Rajshahi">
+                          <option value="Rangamati">
+                          <option value="Rangpur">
+                          <option value="Satkhira">
+                          <option value="Shariatpur">
+                          <option value="Sherpur">
+                          <option value="Sirajganj">
+                          <option value="Sunamganj">
+                          <option value="Sylhet">
+                          <option value="Tangail">
+                          <option value="Thakurgaon">
+                        </datalist>
                       </div>
                       <div class="py-1">
                         <div class="font-bold text-lg">Fathers Name</div>
-                        <input type="text" class="p-2 rounded-lg w-full form-control" placeholder="Enter Father's Name" name="father" id="father" value={{$candidate->father}} />
+                        <input type="text" class="p-2 rounded-lg w-full uppercase form-control" placeholder="Enter Father's Name" name="father" id="father" value={{$candidate->father}} />
                       </div>
                       <div class="py-1">
                         <div class="font-bold text-lg">Mothers Name</div>
-                        <input type="text" class="p-2 rounded-lg w-full form-control" placeholder="Enter Mother's Name" name="mother" id="mother" value={{$candidate->mother}} />
+                        <input type="text" class="p-2 rounded-lg w-full uppercase form-control" placeholder="Enter Mother's Name" name="mother" id="mother" value={{$candidate->mother}} />
                       </div>
                       <div class="py-1">
                         <div class="font-bold text-lg">Religion</div>
                         <select class="form-control p-2 rounded-lg w-full" name="religion" id="religion" value={{$candidate->religion}} size="large" placeholder="Select a person">
-                          <option value="Muslim">Muslim</option>
-                          <option value="Non Muslim">Non Muslim</option>
+                          <option value="MUSLIM">MUSLIM</option>
+                          <option value="NON MUSLIM">NON MUSLIM</option>
                         </select>
                       </div>
                       <div class="py-1">
                         <div class="font-bold text-lg">Gender</div>
                         <select class="form-control p-2 rounded-lg w-full" size="large" placeholder="Select a person" name="gender" value="{{$candidate->gender}}">
-                          <option value="Male">Male</option>
-                          <option value="Female">Female</option>
+                          <option value="MALE">MALE</option>
+                        <option value="FEMALE">FEMALE</option>
                         </select>
                       </div>
                       <div class="py-1">
                         <div class="font-bold text-lg">Marital Status</div>
                         <select class="form-control w-full p-2 rounded-lg" size="large" name="married" value={{$candidate->married}} id="married" placeholder="Select a person">
-                          <option value="Married">Married</option>
-                          <option value="Unmarried">Unmarried</option>
+                          <option value="MARRIED">MARRIED</option>
+                        <option value="UNMARRIED">UNMARRIED</option>
                         </select>
                       </div>
                       <div class="py-1">
                         <div class="font-bold text-lg">Medical Center Name</div>
-                        <input type="text" class="p-2 rounded-lg w-full form-control" id="medical_center_name" name="medical_center_name" value={{$candidate->medical_center}} placeholder="Enter Medical Center Name" />
+                        <input type="text" class="p-2 rounded-lg w-full uppercase form-control" id="medical_center_name" name="medical_center_name" value={{$candidate->medical_center}} placeholder="Enter Medical Center Name" />
                       </div>
                       <div class="py-1">
                         <div class="font-bold text-lg">Medical Issue Date</div>
-                        <input type="date" class="p-2 rounded-lg w-full form-control" id="medical_issue_date" name="medical_issue_date" value={{$candidate->medical_issue_date}} placeholder="Enter Date Of Medical Issue" />
+                        <input type="text" class="p-2 rounded-lg w-full uppercase form-control" id="medical_issue_date" name="medical_issue_date" value={{$candidate->medical_issue_date}} placeholder="Enter Date Of Medical Issue" />
                       </div>
                       <div class="py-1">
-                        <div class="font-bold text-lg">Medical Expiry Date</div>
-                        <input type="date" name="medical_expire_date" id="medical_expire_date" value={{$candidate->medical_expire_date}} class="p-2 rounded-lg w-full form-control" placeholder="Enter Date Of Medical Expiry" />
+                        <div class="font-bold text-lg">Medical Expire Date</div>
+                        <input type="text" name="medical_expire_date" id="medical_expire_date" value={{$candidate->medical_expire_date}} class="p-2 rounded-lg w-full form-control uppercase" placeholder="Enter Date Of Medical Expiry" />
                       </div>
                       <div class="py-1">
                         <div class="font-bold text-lg">Driver Licence Number</div>
-                        <input type="text" class="p-2 rounded-lg w-full form-control" id="driving_licence" name="driving_licence" value={{$candidate->driving_licence}} placeholder="Enter Driver Licence Number" />
+                        <input type="text" class="p-2 rounded-lg w-full form-control uppercase" id="driving_licence" name="driving_licence" value={{$candidate->driving_licence}} placeholder="Enter Driver Licence Number" />
                       </div>
                       <div class="py-1">
                         <div class="font-bold text-lg">Police Clearence No</div>
-                        <input type="text" class="p-2 rounded-lg w-full form-control" id="police_licence" name="police_licence" value={{$candidate->police}} placeholder="Enter Police Clearence Number" />
+                        <input type="text" class="p-2 rounded-lg w-full form-control uppercase" id="police_licence" name="police_licence" value={{$candidate->police}} placeholder="Enter Police Clearence Number" />
                       </div>
                     </div>
                       <div class=" px-10 my-2">
                         <div class="font-bold text-lg">Address</div>
-                        <input type="text" class="form-control p-2 rounded-lg w-full" placeholder="Address" name="address" placeholder="Apartment, studio, or floor" id="address" value={{$candidate->address}}>
+                        <input type="text" class="form-control p-2 rounded-lg w-full uppercase" placeholder="Address" name="address" placeholder="Apartment, studio, or floor" id="address" value={{$candidate->address}}>
                       </div>
                       
                     
@@ -306,51 +377,51 @@
                           <div class="px-10 gap-x-10 grid md:grid-cols-2">
                             <div class="py-1">
                             <div class="font-bold text-lg">Visa No</div>
-                            <input type="text" class="p-2 rounded-lg w-full form-control" id="visa_no" name="visa_no"  value="{{$candidate->visa_no}}" placeholder="Enter Passenger Visa No" />
+                            <input type="text" class="p-2 rounded-lg w-full uppercase form-control" id="visa_no" name="visa_no"  value="{{$candidate->visa_no}}" placeholder="Enter Passenger Visa No" />
                           </div>
                           <div class="py-1">
                             <div class="font-bold text-lg">Sponsor ID</div>
-                            <input type="text" name="spon_id" id="spon_id" value="{{$candidate->spon_id}}" class="p-2 rounded-lg w-full form-control" required placeholder="Enter Sponsor ID" />
+                            <input type="text" name="spon_id" id="spon_id" value="{{$candidate->spon_id}}" class="p-2 rounded-lg w-full uppercase form-control" required placeholder="Enter Sponsor ID" />
                           </div>
                           <div class="py-1">
                             <div class="font-bold text-lg">Visa Date (Hijri)</div>
-                            <input type="text" name="visa_date" id="visa_date" value="{{$candidate->visa_date}}" class="p-2 rounded-lg w-full form-control" placeholder="Enter Visa Date In Hijri" />
+                            <input type="text" name="visa_date" id="visa_date" value="{{$candidate->visa_date2}}" class="p-2 rounded-lg w-full uppercase form-control" placeholder="Enter Visa Date In Hijri" />
                           </div>
                           <div class="py-1">
                             <div class="font-bold text-lg">Salary</div>
-                            <input type="text" class="p-2 rounded-lg w-full form-control" id="salary" name="salary" value="{{$candidate->salary}}" placeholder="Enter Salary 1000SR" />
+                            <input type="text" class="p-2 rounded-lg w-full uppercase form-control" id="salary" name="salary" value="{{$candidate->salary}}" placeholder="Enter Salary 1000SR" />
                           </div>
                           <div class="py-1">
                             <div class="font-bold text-lg">Sponsor Name (Arabic)</div>
-                            <input type="text" class="p-2 rounded-lg w-full form-control" id="spon_name_arabic" name="spon_name_arabic" value="{{$candidate->spon_name_arabic}}" placeholder="Enter Sponsor Name in (Arabic)" />
+                            <input type="text" class="p-2 rounded-lg w-full uppercase form-control" id="spon_name_arabic" name="spon_name_arabic" value="{{$candidate->spon_name_arabic}}" placeholder="Enter Sponsor Name in (Arabic)" />
                           </div>
                           <div class="py-1">
                             <div class="font-bold text-lg">Sponsor Name (English)</div>
-                            <input type="text" class="p-2 rounded-lg w-full form-control" id="spon_name_english" name="spon_name_english" value="{{$candidate->spon_name_english}}" placeholder="Sponsor Name in (English)" />
+                            <input type="text" class="p-2 rounded-lg w-full uppercase form-control" id="spon_name_english" name="spon_name_english" value="{{$candidate->spon_name_english}}" placeholder="Sponsor Name in (English)" />
                           </div>
                           <div class="py-1">
                             <div class="font-bold text-lg">Profession (Arabic)</div>
-                            <input type="text" name="prof_name_arabic" id="prof_name_arabic" value="{{$candidate->prof_name_arabic}}" class="p-2 rounded-lg w-full form-control" placeholder="Enter Profession (Arabic)" />
+                            <input type="text" name="prof_name_arabic" id="prof_name_arabic" value="{{$candidate->prof_name_arabic}}" class="p-2 rounded-lg w-full uppercase form-control" placeholder="Enter Profession (Arabic)" />
                           </div>
                           <div class="py-1">
                             <div class="font-bold text-lg">Profession (English)</div>
-                            <input type="text" name="prof_name_english" id="prof_name_english" value="{{$candidate->prof_name_english}}" class="p-2 rounded-lg w-full form-control" placeholder="Enter Profession in (English)" />
+                            <input type="text" name="prof_name_english" id="prof_name_english" value="{{$candidate->prof_name_english}}" class="p-2 rounded-lg w-full uppercase form-control" placeholder="Enter Profession in (English)" />
                           </div>
                           <div class="py-1">
                             <div class="font-bold text-lg">Mofa No</div>
-                            <input type="text" class="p-2 rounded-lg w-full form-control" id="mofa_no" name="mofa_no" value="{{$candidate->mofa_no}}" placeholder="Enter Mofa No" />
+                            <input type="text" class="p-2 rounded-lg w-full uppercase form-control" id="mofa_no" name="mofa_no" value="{{$candidate->mofa_no}}" placeholder="Enter Mofa No" />
                           </div>
                           <div class="py-1">
                             <div class="font-bold text-lg">Mofa Date</div>
-                            <input type="date" name="mofa_date" value="{{$candidate->mofa_date}}" id="mofa_date" class="p-2 rounded-lg w-full form-control" placeholder="Enter Mofa Date" />
+                            <input type="date" name="mofa_date" value="{{$candidate->mofa_date}}" id="mofa_date" class="p-2 rounded-lg w-full uppercase form-control" placeholder="Enter Mofa Date" />
                           </div>
                           <div class="py-1">
                             <div class="font-bold text-lg">Okala No</div>
-                            <input type="text" class="p-2 rounded-lg w-full form-control" id="okala_no" name="okala_no" value="{{$candidate->okala_no}}" placeholder="Enter Okala No" />
+                            <input type="text" class="p-2 rounded-lg w-full uppercase form-control" id="okala_no" name="okala_no" value="{{$candidate->okala_no}}" placeholder="Enter Okala No" />
                           </div>
                           <div class="py-1">
                             <div class="font-bold text-lg">Musaned No</div>
-                            <input type="text" class="p-2 rounded-lg w-full form-control" id="musaned_no" name="musaned_no" value="{{$candidate->musaned_no}}" placeholder="Enter Musaned No" />
+                            <input type="text" class="p-2 rounded-lg w-full uppercase form-control" id="musaned_no" name="musaned_no" value="{{$candidate->musaned_no}}" placeholder="Enter Musaned No" />
                           </div>
                       
                         </div>
@@ -383,9 +454,52 @@
     </main>
     @include('layout.script')
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
     $(document).ready(function() {
         // Intercept the form submission
+
+      var issueDateStr = $('#medical_issue_date').val();
+      var issueDate = $.datepicker.parseDate('yy-mm-dd', issueDateStr);
+      var formattedDate = $.datepicker.formatDate('dd/mm/yy', issueDate);
+      $('#medical_issue_date').val(formattedDate);
+
+      var issueDateStr = $('#medical_expire_date').val();
+      var issueDate = $.datepicker.parseDate('yy-mm-dd', issueDateStr);
+      var formattedDate = $.datepicker.formatDate('dd/mm/yy', issueDate);
+      $('#medical_expire_date').val(formattedDate);
+      
+      var issueDateStr = $('#pass_issue_date').val();
+      var issueDate = $.datepicker.parseDate('yy-mm-dd', issueDateStr);
+      var formattedDate = $.datepicker.formatDate('dd/mm/yy', issueDate);
+      $('#pass_issue_date').val(formattedDate);
+
+      var issueDateStr = $('#pass_expire_date').val();
+      var issueDate = $.datepicker.parseDate('yy-mm-dd', issueDateStr);
+      var formattedDate = $.datepicker.formatDate('dd/mm/yy', issueDate);
+      $('#pass_expire_date').val(formattedDate);
+  
+      $('#medical_issue_date').datepicker({
+          dateFormat: 'd/m/y',
+          onSelect: function(selectedDate) {
+                var issueDate = $(this).datepicker('getDate');
+                issueDate.setMonth(issueDate.getMonth() + 2);
+                issueDate.setDate(issueDate.getDate() - 1);
+                var formattedDate = $.datepicker.formatDate('d/m/y', issueDate);
+                $('#medical_expire_date').val(formattedDate);
+          }
+      });
+    $('#pass_issue_date').datepicker({
+      dateFormat: 'd/m/y',
+      onSelect: function(selectedDate) {
+            var issueDate = $(this).datepicker('getDate');
+            issueDate.setFullYear(issueDate.getFullYear() + 10);
+            issueDate.setDate(issueDate.getDate() - 1);
+            var formattedDate = $.datepicker.formatDate('d/m/y', issueDate);
+            $('#pass_expire_date').val(formattedDate);
+      }
+    });
         $('#addcandidate').submit(function(event) {
             event.preventDefault(); 
             var formData = $(this).serialize();
@@ -407,6 +521,12 @@
                         icon: response.icon,
                         
                     });
+                    if (response.redirect_url) {
+                        setTimeout(function() {
+                          var redirectUrl = window.location.origin + '/'+ response.redirect_url;
+                          window.location.href = redirectUrl;
+                        }, 2000);
+                    }
                                             
                 },
                 error: function(response) {
@@ -416,6 +536,12 @@
                         icon: response.icon,
                       
                     });
+                    if (response.redirect_url) {
+                        setTimeout(function() {
+                          var redirectUrl = window.location.origin + '/'+ response.redirect_url;
+                          window.location.href = redirectUrl;
+                        }, 2000);
+                    }l
                 }
             });
         });
@@ -427,6 +553,11 @@
             route = route.replace(':id', candidateId);
 
             console.log(route, formData);
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
             // Send the AJAX request
             $.ajax({
                 url: route,
@@ -440,6 +571,13 @@
                         icon: response.icon,
                         
                     });
+                    if (response.redirect_url) {
+                        setTimeout(function() {
+                          var redirectUrl = window.location.origin +'/'+ response.redirect_url;
+                          // console.log(redirectUrl);
+                          window.location.href = redirectUrl;
+                        }, 2000);
+                    }
                                             
                 },
                 error: function(response) {
@@ -449,6 +587,12 @@
                         icon: response.icon,
                       
                     });
+                    if (response.redirect_url) {
+                        setTimeout(function() {
+                          var redirectUrl = window.location.origin + '/'+ response.redirect_url;
+                          window.location.href = redirectUrl;
+                        }, 2000);
+                    }
                 }
             });
         });

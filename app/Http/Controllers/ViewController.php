@@ -19,10 +19,11 @@ class ViewController extends Controller
            if($flag){
                $user = User::where('email', $email)->first();
                $actualpass = decrypt($user->password);
+              
                $actualemail = $user->email;
                if($actualemail == $email && $actualpass == $pass){
                     session_start();
-                    session(['user' => $actualemail, 'role' => $user->role]);	
+                    session(['user' => $actualemail, 'role' => $user->role, 'lname'=>$user->licence_name, 'rl_no'=>$user->rl_no, 'arabic_name'=>$user->arabic_name]);	
                     if($user->role == 'user'){
                         return response()->json([
                             'title'=> 'Success',
@@ -74,7 +75,7 @@ class ViewController extends Controller
             $rname = request('licence_name');
             $rno = request('rl_no');
             $email = request('email');
-            $phone = request('phone');
+           
             $address = request('address');
             $pass = request('pass');
             $pass1 = request('pass1');
@@ -85,7 +86,7 @@ class ViewController extends Controller
                 $user->licence_name = $rname;
                 $user->rl_no = $rno;
                 $user->email = $email;
-                $user->phone = $phone;
+               
                 $user->office_address = $address;
                 $user->password = $pass;
                 $user->embassy_man_name = "";

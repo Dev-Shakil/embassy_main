@@ -4,7 +4,8 @@
    @include('layout/head')
 </head>
 <body>
-    <div<form id="signupform" action="{{route('signup')}}" method="post">
+    <div
+    <form id="signupform" action="{{route('signup')}}" method="post">
             @csrf
             <!-- 2 column grid layout with text inputs for the first and last names -->
             <div class="row mb-4">
@@ -34,7 +35,7 @@
             <!-- Text input -->
             <div class="form-outline mb-4">
                 <label class="form-label" for="form6Example4">Phone</label>
-              <input type="text" id="form6Example4" class="form-control" name="phone"/>
+                <input type="text" id="form6Example4" class="form-control" name="phone"/>
               
             </div>
           

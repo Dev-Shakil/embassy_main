@@ -84,25 +84,12 @@
    @include('layout.navbar')
   </div>
   <!-- ======= Top Bar ======= -->
-  <section id="topbar" class="d-flex align-items-center">
-    <div class="container d-flex justify-content-center justify-content-md-between">
-      <div class="contact-info d-flex align-items-center">
-        <i class="bi bi-envelope d-flex align-items-center"><a href="mailto:contact@example.com">contact@example.com</a></i>
-        <i class="bi bi-phone d-flex align-items-center ms-4"><span>+1 5589 55488 55</span></i>
-      </div>
-      <div class="social-links d-none d-md-flex align-items-center">
-        <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-        <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-        <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-        <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></i></a>
-      </div>
-    </div>
-  </section>
+  
 
   <!-- ======= Header ======= -->
  
   <!-- ======= Hero Section ======= -->
-  <section id="hero" class=" align-items-center">
+  <section id="" class=" align-items-center">
    
     </div>
     @if(session('success'))
@@ -123,6 +110,39 @@
           <div class="modal-body">
              <form action="{{route('user/update')}}">
                 @csrf
+                <div class="row">
+                  <div class="col">
+                    <div class="form-outline ">
+                      <label class="form-label" for="form6Example4">Agency Name(Arabic)</label>
+                      @php
+                        if($user->arabic_name){
+                          echo '<input type="text" id="form6Example4" placeholder="+88 0188273878" class="form-control bg-secondary" value="'.$user->arabic_name.'" name="arabic_name" readonly/>';
+
+                        }
+                        else {
+                          echo '<input type="text" id="form6Example4" placeholder="" class="form-control" name="arabic_name"/>';
+                        }
+                      @endphp
+                    </div>
+                  </div>
+
+                  <div class="col">
+                    <div class="form-outline ">
+                        <label class="form-label" for="form6Example4">Agency Phone</label>
+                        @php
+                        // dd($user->phone);
+                        if($user->phone){
+                          echo '<input type="text" id="form6Example4" placeholder="+88 0188273878" class="form-control bg-secondary" value="'.$user->phone.'" name="phone" readonly/>';
+
+                        }
+                        else {
+                          echo '<input type="text" id="form6Example4" placeholder="+88 0188273878" class="form-control" name="phone"/>';           
+                        }
+                      @endphp
+                    </div>
+                  </div>
+                </div>
+                
                 <div class="mb-3">
                   <label for="exampleInputEmail1" class="form-label">Name</label>
                   <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="uname">
@@ -130,7 +150,7 @@
                 </div>
                 <div class="mb-3">
                   <label for="exampleInputPassword1" class="form-label">What's App Number</label>
-                  <input type="number" class="form-control" id="exampleInputPassword1" name="wsphn">
+                  <input type="text" class="form-control" id="exampleInputPassword1" name="wsphn">
                 </div>
                 
                 <button
@@ -165,29 +185,34 @@
                     <div class="px-10 gap-x-10 grid md:grid-cols-2">
                       <div class="py-1">
                       <div class="font-semibold text-lg" >Candidate Name </div>
-                      <input type="text" class="form-control" id="pname" name="pname" placeholder="Candidate Name" required>
+                      <input type="text" class="form-control uppercase" id="pname" name="pname" placeholder="Candidate Name" required>
                     </div>
                     <div class="py-1">
                       <div class="font-semibold text-lg">Passport Number</div>
-                      <input type="text" class="form-control" id="pnumber" name="pnumber" required placeholder="Passport Number">
+                      <input type="text" class="form-control uppercase " id="pnumber" name="pnumber" minlength="0" maxlength="9" required placeholder="Passport Number">
                     </div>
                     <div class="py-1">
                       <div class="font-semibold text-lg">Passport Issue Date</div>
-                      <input type="date" class="form-control" id="pass_issue_date" name="pass_issue_date">
+                      <input type="text" class="form-control uppercase " id="pass_issue_date" placeholder="Passport Issue Date" name="pass_issue_date">
                     </div>
                     <div class="py-1">
                       <div class="font-semibold text-lg">Passport Expire Date</div>
-                      <input type="date" class="form-control" id="pass_expire_date" name="pass_expire_date">
+                      <input type="text" class="form-control uppercase" id="pass_expire_date" name="pass_expire_date" placeholder="Passport Expiry Date" >
                     </div>
                     <div class="py-1">
                       <div class="font-semibold text-lg">Date Of Birth</div>
-                      <input type="date" class="form-control" id="date_of_birth" name="date_of_birth">
+                      <input type="date" class="form-control uppercase" id="date_of_birth" name="date_of_birth" placeholder="Date Of Birth">
                     </div>
                     <div class="py-1">
                       <div class="font-semibold text-lg">Place Of Birth</div>
-                      <input type="text" class="form-control" id="place_of_birth" name="place_of_birth" list="districts" placeholder="Apartment, studio, or floor">
+                      <input type="text" class="form-control uppercase" id="place_of_birth" name="place_of_birth" list="districts" placeholder="Place">
                               <datalist id="districts">
                                 <option value="Bagerhat">
+                                  <option value="Barishal">
+                                    <option value="Jashore">
+                                    <option value="Chattogram">
+                                    <option value="Cumilla">
+                                    <option value="Bogura">
                                 <option value="Bandarban">
                                 <option value="Barguna">
                                 <option value="Barisal">
@@ -255,59 +280,61 @@
                     </div>
                     <div class="py-1">
                       <div class="font-semibold text-lg">Address</div>
-                      <input type="text" class="form-control" id="address" name="address" placeholder="Apartment, studio, or floor">
+                      <input type="text" class="form-control uppercase" id="address" name="address" placeholder="Place">
                     </div>
                     <div class="py-1">
                       <div class="font-semibold text-lg">Fathers Name</div>
-                      <input type="text" class="form-control" id="father" name="father" placeholder="Father's Name">
+                      <input type="text" class="form-control uppercase" id="father" name="father" placeholder="Father's Name">
                     </div>
                     <div class="py-1">
                       <div class="font-semibold text-lg">Mothers Name</div>
-                      <input type="text" class="form-control" id="mother" name="mother" placeholder="Mother's Name">
+                      <input type="text" class="form-control uppercase" id="mother" name="mother" placeholder="Mother's Name">
                     </div>
                     <div class="py-1">
                       <div class="font-semibold text-lg">Religion</div>
                       <select class="form-control p-2 rounded-lg w-full" size="large" placeholder="Select a religion" id="religion" name="religion">
                         <option selected>Choose...</option>
-                        <option value="Muslim">Muslim</option>
-                        <option value="Non Muslim">Non Muslim</option>
+                        <option value="MUSLIM">MUSLIM</option>
+                        <option value="NON MUSLIM">NON MUSLIM</option>
                       </select>
                     </div>
                     <div class="py-1">
                       <div class="font-semibold text-lg">Gender</div>
                       <select class="form-control p-2 rounded-lg w-full" size="large" placeholder="Select..."  name="gender" id="gender">
                         <option selected>Choose...</option>
-                        <option value="Male">Male</option>
-                        <option value="Female">Female</option>
+                        <option value="MALE">MALE</option>
+                        <option value="FEMALE">FEMALE</option>
                       </select>
                     </div>
                     <div class="py-1">
                       <div class="font-semibold text-lg">Marital Status</div>
-                      <select id="inputState" class="form-select" name="married">
+                      <select id="inputState" class="form-select uppercase" name="married">
                         <option selected>Choose...</option>
-                        <option value="Married">Married</option>
-                        <option value="Unmarried">Unmarried</option>
+                        <option value="MARRIED">MARRIED</option>
+                        <option value="UNMARRIED">UNMARRIED</option>
                       </select>
                     </div>
+                    <h2 class='my-2 font-bold text-2xl '>Other Inoformaition</h2>
+                    <br/>
                     <div class="py-1">
                       <div class="font-semibold text-lg">Medical Center Name</div>
-                      <input type="text" class="form-control" id="medical_center_name" name="medical_center_name">
+                      <input type="text" class="form-control uppercase" placeholder="Medical Center Name" id="medical_center_name" name="medical_center_name">
                     </div>
                     <div class="py-1">
                       <div class="font-semibold text-lg">Medical Issue Date</div>
-                      <input type="date" class="form-control" id="medical_issue_date" name="medical_issue_date">
+                      <input type="text" class="form-control uppercase" placeholder="Medical Issue Date" id="medical_issue_date" name="medical_issue_date">
                     </div>
                     <div class="py-1">
                       <div class="font-semibold text-lg">Medical Expiry Date</div>
-                      <input type="date" class="form-control" id="medical_expire_date" name="medical_expire_date">
+                      <input type="text" class="form-control uppercase" placeholder="Medical Expiry Date" id="medical_expire_date" name="medical_expire_date">
                     </div>
                     <div class="py-1">
                       <div class="font-semibold text-lg">Driver Licence Number</div>
-                      <input type="text" class="form-control" id="driving_licence" name="driving_licence">
+                      <input type="text" class="form-control uppercase" id="driving_licence" placeholder="Driving Licence Number" name="driving_licence">
                     </div>
                     <div class="py-1">
                       <div class="font-semibold text-lg">Police Clearence No</div>
-                      <input type="text" class="form-control" id="police_licence" name="police_licence">
+                      <input type="text" class="form-control uppercase" id="police_licence" placeholder="Police Clearence Number" name="police_licence">
                     </div>
                   </div>
                   <div class="text-center">
@@ -328,8 +355,11 @@
       </div>
     </div>
      
-    <div class="container mt-4">
-      <caption class="fw-semibold text-center">Candidates</caption>
+    
+
+  </section><!-- End Hero -->
+  <div class="container ">
+    <div class="table-responsive">
       <table class="table table-bordered border-primary" id="candidatetable">
         <thead>
           <tr>
@@ -354,7 +384,12 @@
             </td>
             <td>{{$candidate->mofa_no}}</td>
             <td class="text-center p-2">
-              <a href="{{ route('user/visaadd', ['id' => $candidate->id]) }}" target="_blank" class="fw-semibold text-primary"><i class="bi bi-file-earmark-plus"></i></a>
+              @php
+                if(!$candidate->visa_no){
+                  echo '<a href="' . route('user/visaadd', ['id' => $candidate->id]) . '" target="_blank" class="fw-semibold text-primary"><i class="bi bi-file-earmark-plus"></i></a>';
+                }
+              @endphp
+              
               <a href="{{ route('user/edit', ['id' => $candidate->id]) }}" target="_blank" class="fw-semibold text-success"><i class="bi bi-pencil-square"></i></a>
               <a href="{{ route('user/print', ['id' => $candidate->id]) }}" target="_blank" class="fw-semibold text-warning"><i class="bi bi-printer-fill"></i></a>
             </td>
@@ -362,10 +397,10 @@
           @endforeach
         </tbody>
       </table>
+
     </div>
-
-  </section><!-- End Hero -->
-
+    
+  </div>
 
   <div id="preloader"></div>
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
@@ -384,10 +419,100 @@
  @include('layout.script')
  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
  <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
+ 
+ <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
 $(document).ready(function() {
     $('#candidatetable').DataTable();
-    $('#addcandidate').on('submit', function(e) {
+
+    $('#medical_issue_date').datepicker({
+      dateFormat: 'd/m/y',
+      onSelect: function(selectedDate) {
+            var issueDate = $(this).datepicker('getDate');
+            issueDate.setMonth(issueDate.getMonth() + 2);
+            issueDate.setDate(issueDate.getDate() - 1);
+            var formattedDate = $.datepicker.formatDate('d/m/y', issueDate);
+            $('#medical_expire_date').val(formattedDate);
+      }
+    });
+    $('#pass_issue_date').datepicker({
+      dateFormat: 'd/m/y',
+      onSelect: function(selectedDate) {
+            var issueDate = $(this).datepicker('getDate');
+            issueDate.setFullYear(issueDate.getFullYear() + 10);
+            issueDate.setDate(issueDate.getDate() - 1);
+            var formattedDate = $.datepicker.formatDate('d/m/y', issueDate);
+            $('#pass_expire_date').val(formattedDate);
+      }
+    });
+    // $('#pass_expire_date').datepicker({
+    //   dateFormat: 'd/m/y'
+    // });
+    var apiUrl = window.location.origin + '/user/get';
+    var method = "GET";
+    var data = {
+       
+    };
+    var headers = {
+       
+    };
+    
+    callApi(apiUrl, method, data, headers);
+   
+});
+var dataObject = {};
+function callApi(apiUrl, method, data, headers) {
+            $.ajax({
+                url: apiUrl,
+                type: method,
+                data: data,
+                headers: headers,
+                dataType: "json",
+                // success: function (response) {
+                //     console.log(response);
+                //     for (var key in response) {
+                //         dataObject[key] = response[key];
+                //     }
+                      
+                // },
+                success: function (response) {
+                        console.log(response);
+                        
+                        for (var key in response.candidates) {
+                            var candidateValue = response.candidates[key];
+                            var userEmail = key;
+                            var combinedValue = {
+                                candidate: candidateValue,
+                                user: response.users[candidateValue] || null 
+                            };
+                            dataObject[userEmail] = combinedValue;
+                        }
+                        console.log(dataObject);
+                    },   
+                    error: function (error) {
+                    console.error("Error calling API:", error);
+                }
+            });
+}
+$('#pnumber').on('change', function () {
+    var inputValue = $(this).val();
+    var foundObject = dataObject[inputValue];
+   
+    if (foundObject) {
+        // var email = Object.keys(foundObject)[0];
+        var email = foundObject.candidate;
+        // var licenceName = foundObject[email].user ? foundObject[email].user.licence_name : "Not available";
+        var licenceName = foundObject.user.licence_name ? foundObject.user.licence_name : "Not available";
+        alert(inputValue + " exists in database under: " + licenceName+'('+ foundObject.user.rl_no +')'+' Contact here: '+ email);
+        $('#pnumber').val("");
+    } else {
+        
+    }
+});
+
+
+
+$('#addcandidate').on('submit', function(e) {
         e.preventDefault();
 
         var form = $(this);
@@ -407,35 +532,48 @@ $(document).ready(function() {
                       icon: response.icon,
                       
                   });
-                  setTimeout(function() {
-                      window.location.reload();
-                  }, 2000);
+                  if (response.redirect_url) {
+                            setTimeout(function() {
+                              var redirectUrl = window.location.origin + '/'+ response.redirect_url;
+                              window.location.href = redirectUrl;
+                            }, 3000);
+                    }
                                           
               },
               error: function(response) {
                 
-                  console.log(response.title);
+                  console.log(response);
+                  var errorMessage = xhr.responseText;
+                  var regex = /SQLSTATE\[23000\]:.*Duplicate entry.*'(.+)' for key '(.+)'/;
+                  var matches = errorMessage.match(regex);
+                  var duplicateEntryValue = matches ? matches[1] : null;
+                  var duplicateEntryKey = matches ? matches[2] : null;
+
+                  console.log("Duplicate Entry Value:", duplicateEntryValue);
+                  console.log("Duplicate Entry Key:", duplicateEntryKey);
                   Swal.fire({
                       title: "Error",
                       text: "Cannot add candidate\n 1: Complete all fields are required\n 2: Same ID check",
                       icon: 'error',
                     
                   });
-                  setTimeout(function() {
-                    window.location.reload();
-                  }, 2000);
-
+                  if (response.redirect_url) {
+                            setTimeout(function() {
+                              var redirectUrl = window.location.origin + '/'+ response.redirect_url;
+                              window.location.href = redirectUrl;
+                            }, 3000);
+                    }
                   
               }
           });
       });
-});
-document.getElementById('pass_issue_date').addEventListener('change', function() {
-  var issueDate = new Date(this.value);
-  var expireDate = new Date(issueDate.getFullYear() + 10, issueDate.getMonth(), issueDate.getDate());
-  var formattedExpireDate = formatDate(expireDate);
-  document.getElementById('pass_expire_date').value = formattedExpireDate;
-});
+// document.getElementById('pass_issue_date').addEventListener('change', function() {
+//   var issueDate = new Date(this.value);
+//   var expireDate = new Date(issueDate.getFullYear() + 10, issueDate.getMonth(), issueDate.getDate());
+//   var formattedExpireDate = formatDate(expireDate);
+//   console.log(formattedExpireDate);
+//   document.getElementById('pass_expire_date').value = formattedExpireDate;
+// });
 
 function formatDate(date) {
   date.setDate(date.getDate() - 1); // Subtract 1 day from the date

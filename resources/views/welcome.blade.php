@@ -83,13 +83,7 @@
                           
                         </div>
                       </div>
-                      <div class="col">
-                        <div class="form-outline ">
-                            <label class="form-label" for="form6Example4">Phone</label>
-                          <input type="text" id="form6Example4" placeholder="+88 0188273878" class="form-control" name="phone"/>
-                          
-                        </div>
-                      </div>
+                      
                     </div>
                   
                     <!-- Text input -->
