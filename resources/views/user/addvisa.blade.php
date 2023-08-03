@@ -4,8 +4,15 @@
     @include('layout.head')
 </head>
 <body>
-    <div class="">
-      @include('layout.navbar')
+  @include('layout.navbar')
+    <div class="container shadow-lg rounded-lg pb-2 mt-4">
+  
+      @foreach ($candidates as $candidate)@endforeach
+      <div class="py-2 px-4 text-xl font-semibold w-full rounded-lg shadow-md">Enter Visa For <span class="font-bold px-2 rounded-lg py-1  text-2xl">{{$candidate->name}}</span></div>
+      {{-- foreac
+      @php
+  dd($candidate);
+               @endphp --}}
         {{-- <form id="visainput" class="mt-5">
             @csrf
             <div class="row">
@@ -69,58 +76,59 @@
               </button>
             </div>
         </form> --}}
-        <form id="visainput" class="mt-5">
+        <form id="visainput" class="pt-4">
           @csrf
           <div class="row">
               <input type="hidden" name="" id="candidate_id" value="{{$id}}" />
               <div class="px-10 gap-x-10 grid md:grid-cols-2">
                 <div class="py-2 flex flex-col gap-2">
                 <div class="font-bold text-lg">Visa No</div>
-                <input type="text" id="visa_no" name="visa_no" class="form-control p-2 rounded-lg w-full uppercase" placeholder="Ex- 1303044456" />
+                <input type="text" id="visa_no" name="visa_no" class="form-control p-2 rounded-lg w-full uppercase" placeholder="" />
               </div>
               <div class="py-2 flex flex-col gap-2">
                 <div class="font-bold text-lg">Sponsor ID</div>
-                <input type="text" id="spon_id" name="spon_id" class="form-control p-2 rounded-lg w-full uppercase" placeholder="Ex- 7097997442" />
+                <input type="text" id="spon_id" name="spon_id" class="form-control p-2 rounded-lg w-full uppercase" placeholder="" />
               </div>
               <div class="py-2 flex flex-col gap-2">
                 <div class="font-bold text-lg">Visa Date (Hijri)</div>
                 <input type="text" id="visa_date" name="visa_date" class="form-control p-2 rounded-lg w-full uppercase" placeholder="Ex- 1444/09/30" />
               </div>
-              <div class="py-2 flex flex-col gap-2">
-                <div class="font-bold text-lg">Salary</div>
-                <input type="text" id="salary" name="salary" class="form-control p-2 rounded-lg w-full uppercase" placeholder="Ex- 1000" />
-              </div>
+            
               <div class="py-2 flex flex-col gap-2">
                 <div class="font-bold text-lg">Sponsor Name (Arabic)</div>
-                <input type="text" id="spon_name_arabic" name="spon_name_arabic" class="form-control p-2 rounded-lg w-full uppercase" placeholder="Ex- القوة العربية." />
+                <input type="text" id="spon_name_arabic" name="spon_name_arabic" class="form-control p-2 rounded-lg w-full uppercase" placeholder="" />
               </div>
-              <div class="py-2 flex flex-col gap-2">
+              {{-- <div class="py-2 flex flex-col gap-2">
                 <div class="font-bold text-lg">Sponsor Name (English)</div>
-                <input type="text" id="spon_name_english" name="spon_name_english" class="form-control p-2 rounded-lg w-full uppercase" placeholder="Ex- Arabic Power" />
-              </div>
+                <input type="text" id="spon_name_english" name="spon_name_english" class="form-control p-2 rounded-lg w-full uppercase" placeholder="" />
+              </div> --}}
               <div class="py-2 flex flex-col gap-2">
                 <div class="font-bold text-lg">Profession (Arabic)</div>
-                <input type="text" id="prof_name_arabic" name="prof_name_arabic" class="form-control p-2 rounded-lg w-full uppercase" placeholder="Ex- القوة العربية." />
+                <input type="text" id="prof_name_arabic" name="prof_name_arabic" class="form-control p-2 rounded-lg w-full uppercase" placeholder="" />
               </div>
               <div class="py-2 flex flex-col gap-2">
                 <div class="font-bold text-lg">Profession (English)</div>
-                <input type="text" id="prof_name_english" name="prof_name_english" class="form-control p-2 rounded-lg w-full uppercase" placeholder="Ex- Electrian" />
+                <input type="text" id="prof_name_english" name="prof_name_english" class="form-control p-2 rounded-lg w-full uppercase" placeholder="" />
               </div>
               <div class="py-2 flex flex-col gap-2">
-                <div class="font-bold text-lg">Mofa No</div>
-                <input type="text" id="mofa_no" name="mofa_no" class="form-control p-2 rounded-lg w-full uppercase" placeholder="Ex- 43780333" />
+                <div class="font-bold text-lg">Application (MOFA) NO</div>
+                <input type="text" id="mofa_no" name="mofa_no" class="form-control p-2 rounded-lg w-full uppercase" placeholder="" />
               </div>
               <div class="py-2 flex flex-col gap-2">
-                <div class="font-bold text-lg">Mofa Date</div>
-                <input type="date" id="mofa_date" name="mofa_date" class="form-control p-2 rounded-lg w-full uppercase" placeholder="" />
+                <div class="font-bold text-lg">Application (MOFA) Date</div>
+                <input type="text" id="mofa_date" name="mofa_date" class="form-control p-2 rounded-lg w-full uppercase" placeholder="" />
               </div>
               <div class="py-2 flex flex-col gap-2">
-                <div class="font-bold text-lg">Okala No</div>
-                <input type="text" id="okala_no" name="okala_no" class="form-control p-2 rounded-lg w-full uppercase" placeholder="Ex- 9430340" />
+                <div class="font-bold text-lg">Salary</div>
+                <input type="text" id="salary" name="salary" class="form-control p-2 rounded-lg w-full uppercase" placeholder="" />
+              </div>
+              <div class="py-2 flex flex-col gap-2">
+                <div class="font-bold text-lg">Wakala No</div>
+                <input type="text" id="okala_no" name="okala_no" class="form-control p-2 rounded-lg w-full uppercase" placeholder="" />
               </div>
               <div class="py-2 flex flex-col gap-2">
                 <div class="font-bold text-lg">Musaned No</div>
-                <input type="text" id="musaned_no" name="musaned_no" class="form-control p-2 rounded-lg w-full uppercase" placeholder="Ex- 039409230" />
+                <input type="text" id="musaned_no" name="musaned_no" class="form-control p-2 rounded-lg w-full uppercase" placeholder="" />
               </div>
           </div>
           <div class="text-center pt-3">
@@ -136,8 +144,19 @@
 
     @include('layout.script')
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script>
         $(document).ready(function() {
+
+          $('#mofa_date').datepicker({
+      dateFormat: 'yy-mm-dd',
+      onSelect: function(selectedDate) {
+            var dateOfBirth = $(this).datepicker('getDate');
+            
+            var formattedDate = $.datepicker.formatDate('yy-mm-dd',dateOfBirth);
+            $('#mofa_date').val(formattedDate);
+      }
+    });
             $('#visainput').submit(function(e) {
                 e.preventDefault(); // Prevent the default form submission
 

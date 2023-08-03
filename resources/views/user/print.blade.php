@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Embassy Solution - KSA 4 Page</title>
+    <meta name="description" content="Print Your Ksa 4 Page for">
+    <title>Embassy Solution Print - KSA 4 Page</title>
+    
+    <link rel="icon" type="image/x-icon" href="{{asset('assets/images/fav.png')}}">
     <link rel="stylesheet" href="../asset/css/ksa.css">
     <style>
         @font-face {
@@ -42,7 +45,7 @@
         JsBarcode("#barcode", "hello")
     </script>
 </head>
-<body style="position: relative">
+<body style="position: relative;">
     <!-- @php
         $dob = $candidates[0]->date_of_birth;
         $birthdate = new DateTime($dob);
@@ -67,13 +70,18 @@
         if ($days > 0) {
             $age .= ($age ? ", " : "") . $days . " day" . ($days > 1 ? "s" : "");
         }
+
     @endphp -->
-    <div class=" " style="position: sticky; top:50%; left:5px">
-    <button onclick="window.print();" class="noPrint p-5 bg-blue-500 text-white px-14 text-xl font-bold rounded-xl shadow-xl">
+     <div class=" " style="position: sticky; top:50%; left:5px">
+       <button onclick="window.print();" class="noPrint p-5 mb-2 bg-blue-500 text-white px-14 text-xl font-bold rounded-xl shadow-xl">
         Print
-    </button></div>
+    </button><br/>
+       <button onclick="window.history.back();" class="noPrint p-5 bg-green-500 text-white px-14 text-xl font-bold rounded-xl shadow-xl">
+        Back
+    </button>
+  </div>
     <!-- ksa 1st page design starts -->
-    <div class="  bg-white border-black  h-[100%]  w-[1050px]  mx-auto  ">
+    <div class=" border-black  h-[100%]  w-[1050px]  mx-auto  ">
         <div class="flex justify-between  mb-[10px]">
             <div class="">
               <div class="h-[180px] w-[170px] border-1 border border-black " ></div>
@@ -87,8 +95,8 @@
                 height={50}
               />  -->
            
-              <svg id="barcode1" class="w-[200px] "></svg>
-              <span class=' w-[190px] absolute bottom-11 left-6'>    Visa Date:  {{$candidates[0]->visa_date2}}</span>
+              <svg id="barcode1" class="w-[250px] "></svg>
+              <span class=' w-[190px] absolute bottom-5 left-8'>    Visa Date:  {{$candidates[0]->visa_date2}}</span>
            
             </div>
             <div  class="w-[300px] text-end text-xl">
@@ -109,6 +117,10 @@
               </p>
             </div>
         </div>
+
+        <?php
+        // dd($candidates[0])
+      ?>
         <div class="border-b border-black pb-1 flex flex-wrap items-center " >
             <div class="basis-1/6"> 
               <p class="text-lg w-full">Full Name:</p>
@@ -144,13 +156,24 @@
               : اسم الام
             </div>
         </div>
+        @php
+  
+               @endphp
         <div class="border-b border-black flex" >
             <div class="border-r border-black basis-1/6">
               <p class="text-lg w-full">Date of Birth:</p>
             </div>
             <div class="border-r border-black basis-1/6">
               <p class="text-lg font-bold text-center">
-                {{$candidates[0]->date_of_birth}}
+                <?php
+                $inputDate = $candidates[0]->date_of_birth;
+
+                // Convert the date format
+                $formattedDate = date('d-m-Y', strtotime($inputDate));
+
+                // Output the formatted date
+                echo $formattedDate;
+                ?>
               </p>
             </div>
             <div
@@ -303,7 +326,7 @@
                 DHAKA
               </p>
             </div>
-            <div
+            {{-- <div
               
               class="flex text-lg font-semibold text-end  border-black basis-1/6"
             >
@@ -314,9 +337,9 @@
               <p class="text-xl font-bold">
                 {{$candidates[0]->prof_name_english}}
               </p>
-            </div>
+            </div> --}}
   
-            <div  class=" border-black basis-1/6">
+            <div  class=" border-black basis-3/6">
               <p class="text-xl font-bold text-end arb">
                 {{$candidates[0]->prof_name_arabic}}
               </p>
@@ -329,7 +352,32 @@
             </div>
           </div>
           <div class="border-b border-black flex">
-            <div class="border-r border-black basis-3/12">
+            <div class="basis-1/6">
+              <p class="text-lg w-full mr-5"> </p>
+            </div>
+            <div class="basis-1/6 border-black">
+              <p class="text-lg ">
+             
+              </p>
+            </div>
+            <div
+              
+              class="flex text-lg font-semibold text-end  border-black basis-1/6"
+            >
+              Profession :
+            </div>
+  
+            <div  class=" border-black basis-3/6">
+              <p class="text-xl font-bold uppercase">
+                {{$candidates[0]->prof_name_english}}
+                
+              </p>
+            </div>
+  
+           
+          </div>
+          <div class="border-b border-black flex">
+            <div class="border-r border-black basis-4/12">
               <p class="text-lg w-full"> Home Address and telephone No:</p>
             </div>
             <div  class="border-r border-black basis-6/12 flex items-center justify-center">
@@ -339,22 +387,22 @@
             </div>
             <div
               
-              class=" text-lg font-semibold text-end border-black basis-3/12"
+              class=" text-lg font-semibold text-end border-black basis-2/12"
             >
               <p class="text-end arb">: عنوان المنزل ورقم التلفون</p>
             </div>
           </div>
           <div class="border-b border-black flex" >
-            <div  class="border-r border-black basis-3/12">
+            <div  class="border-r border-black basis-2/12">
               <p class="text-lg w-full">
                 Business Address and <br /> Telephone No :
               </p>
             </div>
-            <div class="border-r border-black basis-7/12">
+            <div class="border-r border-black basis-8/12">
               <p class="text-xl text-center uppercase font-bold">
                 {{$agency[0]->licence_name}} Rl - {{$agency[0]->rl_no}}
                 <br />
-                <span class="font-semibold">
+                <span class="font-semibold text-lg">
                     {{$agency[0]->office_address}}
                 </span>
               </p>
@@ -421,7 +469,7 @@
             >
               <p class="flex text-md justify-between">
                 <p class="pl-1">Date of Expiry</p>
-                <p class="pl-9 arb">: تاريخ انتهاء صلاحية الجواز</p>
+                <p class="pl-7 arb">: تاريخ انتهاء صلاحية الجواز</p>
               </p>
             </div>
             <div class=" border-black basis-3/12 flex justify-between pl-1">
@@ -438,7 +486,15 @@
             </div>
             <div class="border-r border-black basis-3/12">
               <p class="text-2xl font-bold text-center  py-1">
-                {{$candidates[0]->passport_issue_date}}
+                <?php
+                $inputDate = $candidates[0]->passport_expire_date;
+
+                // Convert the date format
+                $formattedDate = date('d-m-Y', strtotime($inputDate));
+
+                // Output the formatted date
+                echo $formattedDate;
+                ?>
               </p>
             </div>
             <div
@@ -446,7 +502,15 @@
               class="flex text-2xl font-bold   border-r border-black basis-4/12"
             >
               <p class="ml-[5rem]  py-1">
-                {{$candidates[0]->passport_expire_date}}
+                <?php
+                $inputDate = $candidates[0]->passport_expire_date;
+
+                // Convert the date format
+                $formattedDate = date('d-m-Y', strtotime($inputDate));
+
+                // Output the formatted date
+                echo $formattedDate;
+                ?>
               </p>
             </div>
             <div  class="border-black basis-3/12">
@@ -538,7 +602,7 @@
           </div>
           <div class="border-b border-black flex">
             <div class="flex text-xl  text-end border-black basis-6/12">
-              Relationship:
+              Relationship:  <span class="font-semibold pl-12">EMPLOYER AND EMPLOYEE</span>
             </div>
             <div class="flex text-xl text-end border-black basis-6/12">
              
@@ -728,8 +792,8 @@
               <p class="text-xl w-full"> Date:</p>
             </div>
             <div class="border-r border-black basis-2/12">
-              <p class="text-xl font-semibold pl-2">
-                visa_date
+              <p class="text-xl font-bold pl-2">
+                {{$candidates[0]->visa_date2}}
               </p>
             </div>
             <div
@@ -762,7 +826,7 @@
                 {{$candidates[0]->spon_name_arabic}}
               </p>
             </div>
-            <div class="basis-2/12 flex text-xl pl-5 text-end arb">
+            <div class="basis-2/12  text-xl  text-end arb">
             
               : لزيارة /العمل لدي
             </div>
@@ -805,7 +869,7 @@
               <p class="arb">:مدتها</p>
             </div>
           </div>
-          <div  class="border-black mt-[30px] flex">
+          <div  class=""><div class="border-black mt-[30px] flex">
             <div class="flex text-xl font-semibold basis-4/12  flex-col">
               <p class="arb">رئيس القسم القنصلي</p>
               <p class="mr-5">Head of consular Section</p>
@@ -822,12 +886,14 @@
               <p class="arb"> مدقق البيانات </p>
               <p class="">Cheeked by</p>
             </div>
-            
           </div>
-          <div class="flex justify-center">
+            <span class="flex justify-center">
                
-            <svg id="passport_no" class="w-[250px] "></svg>
+              <svg id="passport_no" class="h-[110px] w-[340px]"></svg>
+            </span>
           </div>
+       
+          
           
           
   
@@ -840,7 +906,9 @@
      
      <!-- ksa 2nd page design starts -->
     
-     <div class=" w-[1050px] bg-white p-5 text-2xl pl-[50px] m-5 py-[15rem] mx-auto">
+     <div class=" w-[1050px] bg-white p-5 text-2xl pl-[50px] m-5 py-[12rem] mx-auto">
+     
+     
         <p class="mb-10 pt-[]">
             TO
             <br />
@@ -851,7 +919,10 @@
             GULSHAN, DHAKA, BANGLADESH
             <br />
             <br />
-            EXCELLENCY, WITH DUE RESPECT WE ARE SUBMITTING ONE PASSPORT FOR WORK
+            EXCELLENCY,
+            <br />
+            <br />
+             WITH DUE RESPECT WE ARE SUBMITTING ONE PASSPORT FOR WORK
             VISA WITH ALL NECESSARY DOCUMENTS AND PARTICULARS MENTIONED AS BELOW ,
             KNOWING ALL INSTRUCTION AND REGULATION OF THE CONSULATE SECTION:
           </p>
@@ -868,7 +939,7 @@
             <li class=" flex p-1 bordered ">
               <h2 class="w-[30rem]">2. VISA NUMBER & DATE </h2>:
               <span class="font-bold pl-2">
-                {{$candidates[0]->visa_no}} DATE- {{$candidates[0]->visa_date}}
+                {{$candidates[0]->visa_no}} DATE- {{$candidates[0]->visa_date2}}
                
               </span>
             </li>
@@ -881,7 +952,15 @@
             <li class=" flex p-1 bordered ">
               <h2 class="w-[30rem]">4. PASSPORT NO. WITH DATE </h2>:
               <span class="font-bold pl-2">
-                {{$candidates[0]->passport_number}} DATE {{$candidates[0]->passport_issue_date}}
+                {{$candidates[0]->passport_number}} DATE   <?php
+                $inputDate = $candidates[0]->passport_issue_date;
+
+                // Convert the date format
+                $formattedDate = date('d-m-Y', strtotime($inputDate));
+
+                // Output the formatted date
+                echo $formattedDate;
+                ?>
               </span>
             </li>
             <li class=" flex p-1 bordered ">
@@ -906,11 +985,12 @@
           <br />
           <p class="mb-[100px] ">
             WE THEREFORE, REQUEST YOUR EXELLENCY TO KINDLY ISSUE WORK VISA OUT OF
-            -07 - VISAS AND OBLIGE THERE BY.
+            <span contenteditable="true">1</span> VISAS AND OBLIGE THERE BY.
           </p>
-          <div class="flex justify-between w-[1000px] mx-auto ">
+          <div class=" w-[1000px] uppercase mx-auto ">
             
             <p>YOUR FAITHFULLY</p>
+            <p>{{$agency[0]->licence_name}} Rl - {{$agency[0]->rl_no}}</p>
           </div>
      </div>
 
@@ -954,7 +1034,7 @@
           : {{$candidates[0]->prof_name_english}}
           </div>
           <div class="basis-6/12 flex text-2xl font-semibold p-1">
-            NATIONALITY
+            Nationality
           </div>
           <div class="basis-6/12 flex text-2xl font-semibold p-1">
             : BANGLADESHI
@@ -1027,10 +1107,10 @@
           <hr/>
         </ul>
         <div class="px-[20px] mx-auto w-[900px] mt-[150px] flex justify-between text-xl font-bold ">
-          <p class="border-t-2 border-dashed border-black">
+          <p class="border-t-2  border-black">
             Signature for the 1st party
           </p>
-          <p class="border-t-2 border-dashed border-black">
+          <p class="border-t-2 border-black">
             Signature for the 2nd party
           </p>
         </div>
@@ -1115,7 +1195,15 @@
               <td class="uppercase"></td>
               <td class="uppercase"></td>
               <td class="uppercase font-bold text-xl">
-                {{$candidates[0]->passport_expire_date}}
+                  <?php
+                  $inputDate = $candidates[0]->passport_expire_date;
+
+                  // Convert the date format
+                  $formattedDate = date('d-m-Y', strtotime($inputDate));
+
+                  // Output the formatted date
+                  echo $formattedDate;
+                  ?>
               </td>
               <td class=" font-bold text-xl text-end">
                 
@@ -1127,7 +1215,15 @@
               <td class="uppercase"></td>
               <td class="uppercase font-bold text-xl">
                 <p>
-                    {{$candidates[0]->date_of_birth}}
+                  <?php
+                  $inputDate = $candidates[0]->date_of_birth;
+
+                  // Convert the date format
+                  $formattedDate = date('d-m-Y', strtotime($inputDate));
+
+                  // Output the formatted date
+                  echo $formattedDate;
+                  ?>
                   <br />
                   @php echo $age; @endphp
                 </p>
@@ -1154,12 +1250,28 @@
               <td class="uppercase font-bold text-xl">
                 {{$candidates[0]->okala_no}}
               </td>
-              <td class=" font-bold text-xl text-end">Okala/<span class="arb">  الوكالة </span></td>
+              <td class=" font-bold text-xl text-end">Wakala/<span class="arb">  الوكالة </span></td>
             </tr>
             <tr class="[&>td]:border [&>td]:border-black [&>td]:p-2 text-base text-center relative group">
               <td class="uppercase"></td>
               <td class="uppercase"></td>
-              <td class="uppercase font-bold text-xl">{{$candidates[0]->medical_center}}</br>{{$candidates[0]->medical_issue_date}}</br>{{$candidates[0]->medical_expire_date}}</td>
+              <td class=" font-bold text-xl">{{$candidates[0]->medical_center}}</br>Issue Date:   <?php
+                $inputDate = $candidates[0]->medical_issue_date;
+
+                // Convert the date format
+                $formattedDate = date('d-m-Y', strtotime($inputDate));
+
+                // Output the formatted date
+                echo $formattedDate;
+                ?>  </br>Expire Date:   <?php
+                  $inputDate = $candidates[0]->medical_expire_date;
+
+                  // Convert the date format
+                  $formattedDate = date('d-m-Y', strtotime($inputDate));
+
+                  // Output the formatted date
+                  echo $formattedDate;
+                  ?></td>
               <td class=" font-bold text-xl text-end"> Medical/ <span class="arb">المديكل </span></td>
             </tr>
             <tr class="[&>td]:border [&>td]:border-black [&>td]:p-2 text-base text-center relative group">
@@ -1177,9 +1289,9 @@
               <td class="uppercase"></td>
               <td class="uppercase"></td>
               <td class="uppercase font-bold text-xl" contentEditable="true">
-                N/A
+                {{$candidates[0]->driving_licence}}
               </td>
-              <td class=" font-bold text-xl text-end"> License/<span class="arb">الرخصة </span></td>
+              <td class=" font-bold text-xl text-end">Driving License/<span class="arb">الرخصة </span></td>
             </tr>
             <tr class="[&>td]:border [&>td]:border-black [&>td]:p-2 text-base text-center relative group">
               <td class="uppercase"></td>
@@ -1206,14 +1318,14 @@
             </tr>
           </tbody>
         </table>
-        <div class="flex justify-end items-end pt-1 px-5 flex-col mx-auto w-[850px] text-2xl leading-8">
+        <div class="flex justify-end items-end pt-1 px-5 flex-col mx-auto w-[820px] text-2xl leading-8">
           <h2>
             <span class="uppercase font-bold"> {{$agency[0]->licence_name}} </span>:
             <span class="arb">  اسم المكتب
           </span></h2>
           <h2>
             
-            {{$agency[0]->rl_no}} <span class="arb"> :رقم الرخصة</span>
+          <span class="font-bold">   {{$agency[0]->rl_no}} </span><span class="arb"> :رقم الرخصة</span>
           </h2>
           <h2 class="arb"> : التوقيع </h2>
           <h2 class="arb"> : الختم </h2>
@@ -1234,10 +1346,10 @@
             text:"Visa No: {{$candidates[0]->visa_no}}",
         });;
         JsBarcode("#passport_no", "{{$candidates[0]->passport_number}}", {
-            fontSize:30,
+            fontSize:40,
             width: 5,
-            height: 80,
-            textMargin:10,
+            // height: 50,
+            textMargin:1,
             text:"Passport No: {{$candidates[0]->passport_number}}"
         });;
     </script>

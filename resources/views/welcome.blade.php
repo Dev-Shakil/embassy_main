@@ -3,7 +3,8 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
+        <title>KSA Form Print Solution</title>
+        <link rel="icon" type="image/x-icon" href="{{asset('assets/images/fav.png')}}">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         @include('layout.head')
        
@@ -17,29 +18,36 @@
               clifford: "#da373d",
             },
             backgroundImage:{
-                'hero-pattern': "url('/asset/image/hero1.jpg')",
+                'hero-pattern': "url('./img/hero2.jpg')",
             }
           },
         },
       };
     </script>
+    <style>
+     .banner{ 
+      background-image: url('./assets/images/banners.jpg');
+      height:90vh;
+    }
+    
+    </style>
      <!-- tailwind css cdn -->
   </head>
   <body>
     <div
-      class="flex justify-between  items-center text-primary bg-white shadow-lg h-20 px-7 font-semibold text-xl"
+      class="flex justify-between items-center text-primary bg-white shadow-lg h-[9vh] px-7 font-semibold md:text-xl text-md py-15"
     >
-      <div class="flex gap-3">
-        <div class="border-r-2 pr-2 border-primary flex flex-col">
-          <span>حل الملف </span>File Solution
+      <div class="flex gap-3 ">
+        <div class=" p-2 border-primary rounded-xl border-r-4 flex flex-col ">
+          <span class="text-center" >  حل الملف   </span>File Solution
         </div>
-        <div class="flex items-center">Embassy Print Format Platform</div>
+        <div class="flex items-center">Embassy Form Platform</div>
       </div>
       <div>
     
     
             <!-- Button trigger modal -->
-<button  class="focus:border-none text-[22px]" data-bs-toggle="modal" data-bs-target="#exampleModal">
+<button  class="focus:border-none md:text-[22px] text-[16px] border-primary p-2 rounded-xl border-l-4" data-bs-toggle="modal" data-bs-target="#exampleModal">
     Register
   </button>
   
@@ -49,9 +57,9 @@
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLongTitle">Register Account</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            {{-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
-            </button>
+            </button> --}}
           </div>
           <div class="modal-body ">
               <div class="container mt-5">
@@ -62,24 +70,32 @@
                       <div class="col">
                         <div class="form-outline">
                           <label class="form-label" for="form6Example1">Recruiting Licence Name</label>
-                          <input type="text" id="form6Example1" placeholder="Recruiting Licence Name" class="form-control" name="licence_name"/>
+                          <input type="text" id="form6Example1" placeholder="Recruiting Licence Name" class="form-control" required name="licence_name"/>
                           
                         </div>
                       </div>
                       <div class="col">
                         <div class="form-outline">
-                            <label class="form-label" for="form6Example2">Recruiting Licence Number (RL)</label>
-                          <input type="text" id="form6Example2" class="form-control" placeholder="Recruiting Licence Number (123)" name="rl_no"/>
+                          <label class="form-label" for="form6Example1">Recruiting Licence Name (Arabic)</label>
+                          <input type="text" id="form6Example1" placeholder="Recruiting Licence Name" class="form-control" required name="arabic_name"/>
                           
                         </div>
                       </div>
+                     
                     </div>
 
                     <div class="row mb-4">
                       <div class="col">
+                        <div class="form-outline">
+                            <label class="form-label" for="form6Example2">Recruiting Licence Number (RL)</label>
+                          <input type="text" id="form6Example2" class="form-control" placeholder="Recruiting Licence Number (123)" required name="rl_no"/>
+                          
+                        </div>
+                      </div>
+                      <div class="col">
                         <div class="form-outline ">
                             <label class="form-label" for="form6Example3">Email</label>
-                          <input type="email" id="form6Example3" placeholder="abc@gmail.com" class="form-control" name="email"/>
+                          <input type="email" id="form6Example3" required placeholder="abc@gmail.com" class="form-control" name="email"/>
                           
                         </div>
                       </div>
@@ -95,7 +111,7 @@
                     <!-- Email input -->
                     <div class="form-outline mb-4">
                         <label class="form-label" for="form6Example5">Office Address </label>
-                        <textarea class="form-control" id="form6Example7" placeholder="Type Your Office Address" name="address" rows="3"></textarea>
+                        <textarea class="form-control" id="form6Example7" required placeholder="Type Your Office Address" name="address" rows="3"></textarea>
                       
                     </div>
                   
@@ -103,14 +119,14 @@
                         <div class="col">
                             <div class="form-outline ">
                                 <label class="form-label" for="form6Example6" >Password</label>
-                              <input type="password" id="form6Example6" placeholder="Enter Password" class="form-control" name="pass" />
+                              <input type="password" id="form6Example6" required placeholder="Enter Password" class="form-control" name="pass" />
                             
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-outline">
                                 <label class="form-label" for="form6Example7" >Confirm Password</label>
-                                <input type="password" id="form6Example6" placeholder="Enter Confirm Password"  class="form-control" name="pass1" />
+                                <input type="password" id="form6Example6" required placeholder="Enter Confirm Password"  class="form-control" name="pass1" />
                               
                             </div>
                         </div>
@@ -125,8 +141,8 @@
                   
                     <!-- Checkbox -->
                     <div class="form-check flex items-center mb-4">
-                        <label class="form-check-label" for="form6Example8"> I agree, with the terms and condition of the company </label>
-                      <input class="form-check-input me-2" type="checkbox" value="" id="form6Example8" checked />
+                      <input class="form-check-input me-2" type="checkbox" value="" id="form6Example8" /> <label class="form-check-label" for="form6Example8"> I agree, with the terms and condition of the company </label>
+                      
                     
                     </div>
                   
@@ -136,10 +152,7 @@
               </form>
               </div>
           </div>
-          <!-- <div class="modal-footer m-0">
-            <button type="button" class="btn " data-dismiss="modal">Close</button>
-            <button  class="bg-blue-600 text-white px-4 py-2 rounded-lg">Submit</button>
-          </div> -->
+          
         </div>
       </div>
   </div>
@@ -257,13 +270,13 @@
             </div>
           </div> --}}
 
-          <!-- bootstrap register modal ends-->
+          <!-- bootstrap register modal ends bg-[#1AAE9B]-->
          
           
       </div>
     </div>
-    <div class="bg-green-700 h-[91vh] bg-cover flex items-center px-[200px] justify-end bg-hero-pattern">
-        <div class="mt-3 bg-[#1AAE9B] rounded-2xl py-5 px-5 mr-14">
+    <div class="bg-gray-100 banner h-[91vh] bg-cover w-full flex items-center md:px-[200px] md:justify-end justify-center hero-pattern" >
+        <div class="mt-3 bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% rounded-2xl py-5 px-5 md:mr-14 mr-1">
             <form class="" id="loginform" action="{{ route('login') }}" method="post">
                 <!-- Email input -->
                 @csrf
@@ -295,13 +308,13 @@
             </form>
                
             <div class="flex justify-between pt-4">
-                <a href="#!" class="text-white hover:text-blue-600 text-md">Forgot password?</a>
+                <a href="" class="text-white hover:text-blue-600 text-md">Forgot password?</a>
             </div>
             <div class="pt-2 flex justify-between ">
-                <span>Dont have any account?</span>
+                <span class="text-white">Dont have any account?</span>
 
-                <button  class="focus:border-none text-[22px]" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    Sign-UP
+                <button  class="focus:border-none text-base bg-white rounded-lg px-2 p-1 font-semibold" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    signup
                 </button>
             
             </div>
@@ -314,43 +327,81 @@
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
    
    <script type="text/javascript">
-       $(document).ready(function() {
-           $('#loginform').on('submit', function(e) {
-               e.preventDefault();
+    $(document).ready(function() {
+        $('#loginform').on('submit', function(e) {
+            e.preventDefault();
 
-               var form = $(this);
-               var formData = form.serialize();
+            var form = $(this);
+            var formData = form.serialize();
 
-               $.ajax({
-                   url: form.attr('action'),
-                   method: 'POST',
-                   data: formData,
+            $.ajax({
+                url: form.attr('action'),
+                method: 'POST',
+                data: formData,
 
-                   success: function(response){
-                       Swal.fire({
-                           title: response.title,
-                           text: response.message,
-                           icon: response.icon,
+                success: function(response){
+                    Swal.fire({
+                        title: response.title,
+                        text: response.message,
+                        icon: response.icon,
 
-                       });
-                       setTimeout(function() {
-                           window.location.href = response.redirect_url;
-                       }, 500);
-                   },
-                   error: function(xhr) {
-                       Swal.fire({
-                           title: response.title,
-                           text: response.message,
-                           icon: response.icon,
+                    });
+                    setTimeout(function() {
+                        window.location.href = response.redirect_url;
+                    }, 500);
+                },
+                error: function(xhr) {
+                    Swal.fire({
+                        title: response.title,
+                        text: response.message,
+                        icon: response.icon,
 
-                       });
-                       setTimeout(function() {
-                           window.location.href = response.redirect_url;
-                       }, 3000);
-                   }
-               });
-           });
-       });
-   </script>
+                    });
+                    setTimeout(function() {
+                        window.location.href = response.redirect_url;
+                    }, 3000);
+                }
+            });
+        });
+
+       
+        $('#signupform').on('submit', function(e) {
+            e.preventDefault();
+
+            var form = $(this);
+            var formData = form.serialize();
+
+            $.ajax({
+                url: form.attr('action'),
+                method: 'POST',
+                data: formData,
+
+                success: function(response){
+                    Swal.fire({
+                        title: response.title,
+                        text: response.message,
+                        icon: response.icon,
+
+                    });
+                    setTimeout(function() {
+                        window.location.href = response.redirect_url;
+                    }, 500);
+                },
+                error: function(xhr) {
+                    Swal.fire({
+                        title: response.title,
+                        text: response.message,
+                        icon: response.icon,
+
+                    });
+                    setTimeout(function() {
+                        window.location.href = response.redirect_url;
+                    }, 3000);
+                }
+            });
+        });
+
+    });
+</script>
   </body>
 </html>

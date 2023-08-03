@@ -19,70 +19,13 @@ class UserController extends Controller
             $candidates = DB::table('candidates')
                     ->leftJoin('visas', 'candidates.id', '=', 'visas.candidate_id')
                     ->select('candidates.*', 'visas.visa_no', 'visas.mofa_no', 'visas.spon_id')->where('candidates.agency', '=', Session::get('user'))
+                    // ->select('candidates.*', 'visas.*')->where('candidates.agency', '=', Session::get('user'))
                     ->get();
             $user = DB::table('user')->select('*')->where('email','=', Session::get('user'))->first();
             // dd($user);
             return view('user.index', compact('candidates', 'user'));
         }
-        // else{
-            
-        //     DB::beginTransaction();
-        //     try{
-                
-        //         $candidate = new Candidates();
-        //         $candidate->name = strtoupper($request->pname);
-        //         $candidate->passport_number = strtoupper($request->pnumber);
-        //         $candidate->passport_issue_date = date('Y-m-d', strtotime($request->pass_issue_date));
-        //         $candidate->passport_expire_date = date('Y-m-d', strtotime($request->pass_expire_date));
-        //         $candidate->date_of_birth = $request->date_of_birth;
-        //         $candidate->place_of_birth = strtoupper($request->place_of_birth);
-        //         $candidate->address = strtoupper($request->address);
-        //         $candidate->father = strtoupper($request->father);
-        //         $candidate->mother = strtoupper($request->mother);
-        //         $candidate->religion = strtoupper($request->religion);
-        //         $candidate->married = $request->married;
-        //         $candidate->medical_center = strtoupper($request->medical_center_name);
-        //         $candidate->medical_issue_date = date('Y-m-d', strtotime($request->medical_issue_date));
-        //         $candidate->medical_expire_date = date('Y-m-d', strtotime($request->medical_expire_date));
-        //         $candidate->police = strtoupper($request->police_licence);
-        //         $candidate->driving_licence = strtoupper($request->driving_licence);
-        //         $candidate->is_delete = 0;
-        //         $candidate->gender = strtoupper($request->gender);
-                
-        //         $candidate->agency = Session::get('user');
-        //         // dd(Session::get('user'));
-        //         // dd($candidate->save());
-        //         if($candidate->save()){
-        //             DB::commit();
-        //             return response()->json([
-        //                 'title'=> 'Success',
-        //                 'success' => true,
-        //                 'icon' => 'success',
-        //                 'message' => 'Successfully created',
-        //                 'redirect_url' => '/'
-        //             ]);
-        //         }
-        //         else{
-        //             return response()->json([
-        //                 'title'=> 'Error',
-        //                 'success' => false,
-        //                 'icon' => 'error',
-        //                 'message' => 'Cannot add',
-        //                 'redirect_url' => '/'
-        //             ]);
-        //         }
-        //     }
-        //     catch(\Exception $e) {
-        //         DB::Rollback();
-        //         return response()->json([
-        //             'title'=> 'Error',
-        //             'success' => false,
-        //             'icon' => 'error',
-        //             'message' => $e,
-        //             'redirect_url' => '/'
-        //         ]);
-        //     }    
-        // }
+    
         else {
             DB::beginTransaction();
             $response = [
@@ -93,9 +36,30 @@ class UserController extends Controller
                 $candidate = new Candidates();
                 $candidate->name = strtoupper($request->pname);
                 $candidate->passport_number = strtoupper($request->pnumber);
-                $candidate->passport_issue_date = date('Y-m-d', strtotime($request->pass_issue_date));
-                $candidate->passport_expire_date = date('Y-m-d', strtotime($request->pass_expire_date));
-                $candidate->date_of_birth = $request->date_of_birth;
+                // $candidate->passport_issue_date = date('Y-m-d', strtotime($request->pass_issue_date));
+                // $candidate->passport_expire_date = date('Y-m-d', strtotime($request->pass_expire_date));
+                $issueDate = \DateTime::createFromFormat('d/m/Y', $request->pass_issue_date);
+                // dd($request->all(), $issueDate);
+                if ($issueDate !== false) {
+                    $candidate->passport_issue_date = $issueDate->format('Y-m-d');
+                } else {
+                  
+                }
+
+               
+                $expireDate = \DateTime::createFromFormat('d/m/Y', $request->pass_expire_date);
+                if ($expireDate !== false) {
+                    $candidate->passport_expire_date = $expireDate->format('Y-m-d');
+                } else {
+                   
+                }
+                $birthDate = \DateTime::createFromFormat('d/m/Y', $request->date_of_birth);
+                if ($birthDate !== false) {
+                    $candidate->date_of_birth = $birthDate->format('Y-m-d');
+                } else {
+                   
+                }
+                // $candidate->date_of_birth = $request->date_of_birth;
                 $candidate->place_of_birth = strtoupper($request->place_of_birth);
                 $candidate->address = strtoupper($request->address);
                 $candidate->father = strtoupper($request->father);
@@ -103,15 +67,29 @@ class UserController extends Controller
                 $candidate->religion = strtoupper($request->religion);
                 $candidate->married = $request->married;
                 $candidate->medical_center = strtoupper($request->medical_center_name);
-                $candidate->medical_issue_date = date('Y-m-d', strtotime($request->medical_issue_date));
-                $candidate->medical_expire_date = date('Y-m-d', strtotime($request->medical_expire_date));
+                // $candidate->medical_issue_date = date('Y-m-d', strtotime($request->medical_issue_date));
+                // $candidate->medical_expire_date = date('Y-m-d', strtotime($request->medical_expire_date));
+                $issueDate = \DateTime::createFromFormat('d/m/Y', $request->medical_issue_date);
+                if ($issueDate !== false) {
+                    $candidate->medical_issue_date = $issueDate->format('Y-m-d');
+                } else {
+                 
+                }
+
+           
+                $expireDate = \DateTime::createFromFormat('d/m/Y', $request->medical_expire_date);
+                if ($expireDate !== false) {
+                    $candidate->medical_expire_date = $expireDate->format('Y-m-d');
+                } else {
+               
+                }
                 $candidate->police = strtoupper($request->police_licence);
                 $candidate->driving_licence = strtoupper($request->driving_licence);
                 $candidate->is_delete = 0;
                 $candidate->gender = strtoupper($request->gender);
                 
                 $candidate->agency = Session::get('user');
-        
+                // dd($request->all(), $candidate);
                 // Save the candidate
                 if ($candidate->save()) {
                     DB::commit();
@@ -158,11 +136,19 @@ class UserController extends Controller
    public function visa_add(Request $request, $id){
     if(Session::get('user')){
         if($request->isMethod('GET')){
+            
+            $candidates = DB::table('candidates')
+            ->leftJoin('visas', 'candidates.id', '=', 'visas.candidate_id')
+            ->select('candidates.*', 'visas.*')->where('candidates.id', '=', $id)
+            ->get();
+    // dd($candidates);        
+    // return view('user.addvisa', compact('id', 'candidates'));
 
-            return view('user.addvisa', ['id' => $id]);
+
+            return view('user.addvisa', ['id' => $id], compact('id', 'candidates'));
             }
             else{
-    
+         
             $visa = new Visa();
     
             $visa->visa_no = strtoupper($request->input('visa_no'));
@@ -171,11 +157,18 @@ class UserController extends Controller
             $visa->spon_id = strtoupper($request->input('spon_id'));
             $visa->spon_name_arabic = strtoupper($request->input('spon_name_arabic'));
             $visa->salary = strtoupper($request->input('salary'));
-            $visa->spon_name_english = strtoupper($request->input('spon_name_english'));
+            // $visa->spon_name_english = strtoupper($request->input('spon_name_english'));
             $visa->prof_name_arabic = strtoupper($request->input('prof_name_arabic'));
             $visa->prof_name_english = strtoupper($request->input('prof_name_english'));
             $visa->mofa_no = strtoupper($request->input('mofa_no'));
-            $visa->mofa_date = strtoupper($request->input('mofa_date'));
+
+            $mofaDate = \DateTime::createFromFormat('Y-m-d', $request->mofa_date);
+            if ($mofaDate !== false) {
+                $visa->mofa_date = $mofaDate->format('Y-m-d');
+            } else {
+           
+            }
+            // $visa->mofa_date = strtoupper($request->input('mofa_date'));
             $visa->okala_no = strtoupper($request->input('okala_no'));
             $visa->musaned_no = strtoupper($request->input('musaned_no'));
     
@@ -252,6 +245,48 @@ class UserController extends Controller
         }
         
     }
+    public function delete($id, Request $request) {
+        $candidate = Candidates::find($id);
+        if ($candidate) {
+            $target = (Visa::where('candidate_id', $id)->delete());
+            $flag = ($candidate->delete());
+            if($flag){
+                if($target = 1){
+                    return response()->json(['message'=>'Visa And Candidate Deleted', 'success'=>true]);
+                }
+                else{
+                    return response()->json(['message'=>'Candidate Deleted', 'success'=>true]);
+                }
+            }
+            else{
+                return response()->json(['message'=>'Something went wrong', 'success'=>false]);
+            }
+        }
+           
+        else {
+            return response()->json([
+               
+                'message' => 'Contact to the support team, candidate not found',
+                'success' => false
+            ]);
+        }
+    }
+    public function addisa($id, Request $request){
+        if(Session::get('user')){
+            if($request->isMethod('GET')){
+                $candidates = DB::table('candidates')
+                        ->leftJoin('visas', 'candidates.id', '=', 'visas.candidate_id')
+                        ->select('candidates.*')->where('candidates.id', '=', $id)
+                        ->get();
+                // dd($candidates);        
+                return view('user.addvisa', compact('id', 'candidates'));
+            }
+        }
+        else{
+            return view('welcome');
+        }
+        
+    }
 
     public function personal_edit($id, Request $request){
         // dd(1, $id, 2, $request->all());
@@ -260,9 +295,27 @@ class UserController extends Controller
             if($candidate){
             $candidate->name = strtoupper($request->pname);
             $candidate->passport_number = strtoupper($request->pnumber);
-            $candidate->passport_issue_date = date('Y-m-d', strtotime($request->pass_issue_date));
-            $candidate->passport_expire_date = date('Y-m-d', strtotime($request->pass_expire_date));
-            $candidate->date_of_birth = $request->date_of_birth;
+            $issueDate = \DateTime::createFromFormat('d/m/Y', $request->pass_issue_date);
+            if ($issueDate !== false) {
+                $candidate->passport_issue_date = $issueDate->format('Y-m-d');
+            } else {
+              
+            }
+
+           
+            $expireDate = \DateTime::createFromFormat('d/m/Y', $request->pass_expire_date);
+            if ($expireDate !== false) {
+                $candidate->passport_expire_date = $expireDate->format('Y-m-d');
+            } else {
+               
+            }
+            $birthDate = \DateTime::createFromFormat('d/m/Y', $request->date_of_birth);
+                if ($birthDate !== false) {
+                    $candidate->date_of_birth = $birthDate->format('Y-m-d');
+                } else {
+                   
+                }
+            // $candidate->date_of_birth = $request->date_of_birth;
             $candidate->place_of_birth = strtoupper($request->place_of_birth);
             $candidate->address = strtoupper($request->address);
             $candidate->father = strtoupper($request->father);
@@ -270,8 +323,20 @@ class UserController extends Controller
             $candidate->religion = strtoupper($request->religion);
             $candidate->married = $request->married;
             $candidate->medical_center = strtoupper($request->medical_center_name);
-            $candidate->medical_issue_date = date('Y-m-d', strtotime($request->medical_issue_date));
-            $candidate->medical_expire_date = date('Y-m-d', strtotime($request->medical_expire_date));
+            $issueDate = \DateTime::createFromFormat('d/m/Y', $request->medical_issue_date);
+            if ($issueDate !== false) {
+                $candidate->medical_issue_date = $issueDate->format('Y-m-d');
+            } else {
+             
+            }
+
+       
+            $expireDate = \DateTime::createFromFormat('d/m/Y', $request->medical_expire_date);
+            if ($expireDate !== false) {
+                $candidate->medical_expire_date = $expireDate->format('Y-m-d');
+            } else {
+           
+            }
             $candidate->police = strtoupper($request->police_licence);
             $candidate->driving_licence = strtoupper($request->driving_licence);
             $candidate->is_delete = 0;
@@ -324,11 +389,19 @@ class UserController extends Controller
                 $visa->spon_id = $request->input('spon_id');
                 $visa->spon_name_arabic = $request->input('spon_name_arabic');
                 $visa->salary = $request->input('salary');
-                $visa->spon_name_english = $request->input('spon_name_english');
+                // $visa->spon_name_english = $request->input('spon_name_english');
                 $visa->prof_name_arabic = $request->input('prof_name_arabic');
                 $visa->prof_name_english = $request->input('prof_name_english');
                 $visa->mofa_no = $request->input('mofa_no');
-                $visa->mofa_date = $request->input('mofa_date');
+
+                $mofaDate = \DateTime::createFromFormat('Y-m-d', $request->mofa_date);
+            if ($mofaDate !== false) {
+                $visa->mofa_date = $mofaDate->format('Y-m-d');
+            } else {
+           
+            }
+
+                // $visa->mofa_date = $request->input('mofa_date');
                 $visa->okala_no = $request->input('okala_no');
                 $visa->musaned_no = $request->input('musaned_no');
                 // dd($visa->save());

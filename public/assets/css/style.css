@@ -19,8 +19,43 @@ a {
   text-decoration: none;
 }
 
+
+.thead{
+  background-color:red;
+}
+.hello .main-datatable{
+  background-color:rgb(39, 94, 139) !important;
+  color:white;
+  padding:15px 0 15px 0;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border-radius:10px;
+}
+.main-datatable .passenger-table thead{
+  background-color:red ;
+}
+#embassy_list{
+  font-family: Arial, Helvetica, sans-serif;
+}
+#candidatetable_length{
+  padding-left:15px;
+}
+#candidatetable_length option{
+  background-color:rgb(39, 94, 139) !important;
+}
+#candidatetable_length option:hover{
+  pointer-events: none;
+}
+#candidatetable_info{
+  color:white !important;
+  padding-left:15px;
+}
+#candidatetable_filter input{
+  margin-right:20px;
+  color:black;
+  background-color:white;
+}
 a:hover {
-  color: #3b8af2;
+  
   text-decoration: none;
 }
 

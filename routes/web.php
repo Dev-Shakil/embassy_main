@@ -5,6 +5,8 @@ use App\Http\Controllers\ViewController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\EmbassyController;
+use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\BkashTokenizePaymentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,6 +32,7 @@ Route::any('/login', [ViewController::class, 'login'])->name('login');
 Route::any('/user/index', [UserController::class, 'index'])->name('user/index');
 Route::any('/user/visaadd/{id}', [UserController::class, 'visa_add'])->name('user/visaadd');
 Route::any('/user/edit/{id}', [UserController::class, 'edit'])->name('user/edit');
+Route::any('/user/delete/{id}', [UserController::class, 'delete'])->name('user/delete');
 Route::any('/user/personal_edit/{id}', [UserController::class, 'personal_edit'])->name('user/personal_edit');
 Route::any('/user/visa_edit/{id}', [UserController::class, 'visa_edit'])->name('user/visa_edit');
 Route::any('/user/embassy_list', [UserController::class, 'embassy_list'])->name('user/embassy_list');
@@ -46,3 +49,10 @@ Route::any('/ádmin/delete/{id}', [AdminController::class, 'delete'])->name('adm
 
 #embassy routes
 Route::get('/user/embassy/{id}', [EmbassyController::class, 'sendcandidate'])->name('user/embassy');
+
+#payment routes
+Route::any('/payment/index', [PaymentController::class, 'index']);
+
+Route::get('/bkash/payment', [BkashTokenizePaymentController::class, 'index']);
+Route::get('/bkash/create-payment', [BkashTokenizePaymentController::class, 'createPayment'])->name('bkash-create-payment');
+Route::get('/bkash/callback', [BkashTokenizePaymentController::class, 'callBack'])->name('bkash-callBack');
