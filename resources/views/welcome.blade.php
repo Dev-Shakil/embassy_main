@@ -26,8 +26,11 @@
     </script>
     <style>
      .banner{ 
-      background-image: url('./assets/images/banners.jpg');
+      background-image: url('./assets/images/sa.jpg');
       height:90vh;
+      background-size:70% 50%;
+      background-position:center;
+      width:100%;
     }
     
     </style>
@@ -35,13 +38,13 @@
   </head>
   <body>
     <div
-      class="flex justify-between items-center text-primary bg-white shadow-lg h-[9vh] px-7 font-semibold md:text-xl text-md py-15"
+      class="flex justify-between items-center text-primary h-[9vh] px-7 font-semibold md:text-xl text-md py-15 shadow-2xl border-b-2 border-black"
     >
       <div class="flex gap-3 ">
         <div class=" p-2 border-primary rounded-xl border-r-4 flex flex-col ">
           <span class="text-center" >  حل الملف   </span>File Solution
         </div>
-        <div class="flex items-center">Embassy Form Platform</div>
+        <div class="flex items-center">Visa Application Form Platform</div>
       </div>
       <div>
     
@@ -276,24 +279,24 @@
       </div>
     </div>
     <div class="bg-gray-100 banner h-[91vh] bg-cover w-full flex items-center md:px-[200px] md:justify-end justify-center hero-pattern" >
-        <div class="mt-3 bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% rounded-2xl py-5 px-5 md:mr-14 mr-1">
+        <div class="mt-3 bg-white shadow-2xl border-2 border-black rounded-2xl py-9 px-7 md:mr-14 mr-1">
             <form class="" id="loginform" action="{{ route('login') }}" method="post">
                 <!-- Email input -->
                 @csrf
-                <h2 class="text-center text-white pb-6 font-semibold text-2xl">Login</h2>
+                <h2 class="text-center  pb-10 font-semibold text-2xl">Login</h2>
                 <div> <div class="flex flex-col gap-1 mb-4">
-                    <label class="text-white text-xl font-semibold" for="form2Example1">Email address</label>
-                    <input type="email" id="form2Example1" placeholder="abc@gmail.com" class="w-full p-3 rounded-lg" name="email"/>
+                    <label class=" text-xl font-semibold" for="form2Example1">Email Address</label>
+                    <input type="email" id="form2Example1" placeholder="abc@gmail.com" class="border-2 focus:outline-none border-green-700 w-full p-3 rounded-lg" name="email"/>
                     </div>
         
                     <!-- Password input -->
                     <div class="">
-                    <label class="text-white text-xl font-semibold" for="form2Example2">Password</label>
+                    <label class=" text-xl font-semibold" for="form2Example2">Password</label>
                     <input
                         type="password"
                         placeholder="Enter Password"
                         id="form2Example2"
-                        class="w-full p-3 rounded-lg"
+                        class="w-full p-3 rounded-lg border-2 focus:outline-none border-green-700"
                         name="pass"
                     />
                     </div>
@@ -308,10 +311,10 @@
             </form>
                
             <div class="flex justify-between pt-4">
-                <a href="" class="text-white hover:text-blue-600 text-md">Forgot password?</a>
+                <a href="" class=" hover:text-blue-600 text-md">Forgot password?</a>
             </div>
             <div class="pt-2 flex justify-between ">
-                <span class="text-white">Dont have any account?</span>
+                <span class="">Dont have any account?</span>
 
                 <button  class="focus:border-none text-base bg-white rounded-lg px-2 p-1 font-semibold" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     signup

@@ -45,21 +45,21 @@
         </div>
       
     <div class="bg-white space-y-2 pt-[15px] max-w-[1050px] container-fluid" id="printable">
-        <h2 class="text-center text-4xl font-medium">
+        <h2 class="text-center text-2xl font-medium">
             بيان بالجوازات المقدمة
         </h2>
        
         <div class="flex text-lg pt-[30px]">
             <div class="flex-1 space-y-1">
                 <h3 class="flex">
-                    <span class="font-semibold text-xl w-[130px]">
+                    <span class="font-semibold text-lg w-[130px]">
                         {{ Session::get('rl_no') }}
                         
                     </span>
                     <span>:رقم الرخصة</span>
                 </h3>
                 <h3 class="flex">
-                    <span contentEditable class="font-semibold text-xl w-[130px] " id="currentDate">
+                    <span contentEditable class="font-semibold text-lg w-[130px] " id="currentDate">
                         
                     </span>
                     <span>: التاريخ</span>
@@ -82,7 +82,7 @@
        
         <table class="w-full table-bordered" id="embassy_list">
             <thead>
-                <tr class=" [&>th]:border [&>th]:border-black [&>th]:py- text-lg font-semibold text-center [&>th]:font-bold">
+                <tr class=" [&>th]:border [&>th]:border-black [&>th]:py- text-md font-semibold text-center [&>th]:font-bold">
                   
                            
                             <th>

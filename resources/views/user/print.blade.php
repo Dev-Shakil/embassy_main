@@ -13,6 +13,13 @@
             font-family: arbFont;
             src: url('path/to/font-file.woff');
           }
+        @font-face {
+            font-family: 'Times New Roman', Times, serif;
+            src: url('../asset/css/times new roman.ttf');
+          }
+          .print{
+            font-family:'Times New Roman', Times, serif;
+          }
           .arb{
             font-family:arb Arial, sans-serif;
         }
@@ -96,7 +103,7 @@
               />  -->
            
               <svg id="barcode1" class="w-[250px] "></svg>
-              <span class=' w-[190px] absolute bottom-5 left-8'>    Visa Date:  {{$candidates[0]->visa_date2}}</span>
+              <span class=' w-[190px] absolute bottom-5 left-8 print'>    Visa Date:  {{$candidates[0]->visa_date2}}</span>
            
             </div>
             <div  class="w-[300px] text-end text-xl">
