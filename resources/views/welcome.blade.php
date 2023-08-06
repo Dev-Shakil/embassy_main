@@ -26,7 +26,7 @@
     </script>
     <style>
      .banner{ 
-      background-image: url('./assets/images/sa.jpg');
+      background-image: url('./assets/images/sa2.jpeg');
       height:90vh;
       background-size:70% 50%;
       background-position:center;
@@ -50,6 +50,7 @@
     
     
             <!-- Button trigger modal -->
+        <a href="https://drive.google.com/file/d/1aYGbaODafFUDw2fVQ9O2TPGyQ0dwgrtp/view?usp=sharing">User Manual</a>
 <button  class="focus:border-none md:text-[22px] text-[16px] border-primary p-2 rounded-xl border-l-4" data-bs-toggle="modal" data-bs-target="#exampleModal">
     Register
   </button>

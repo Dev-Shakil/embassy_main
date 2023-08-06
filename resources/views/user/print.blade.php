@@ -1055,8 +1055,8 @@
             </strong>
             with a monthly salary
             <strong contentEditable="true">
-                {{$candidates[0]->salary}}
-            </strong>
+              SR{{$candidates[0]->salary}}
+            </strong> 
             payable by the end of each month
           </li>
           <hr/>
