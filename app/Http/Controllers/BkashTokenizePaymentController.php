@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Carbon\Carbon;
+use App\Models\User;
 use Karim007\LaravelBkashTokenize\Facade\BkashPaymentTokenize;
 use Karim007\LaravelBkashTokenize\Facade\BkashRefundTokenize;
 
@@ -19,7 +21,7 @@ class BkashTokenizePaymentController extends Controller
         $request['mode'] = '0011'; //0011 for checkout
         $request['payerReference'] = $inv;
         $request['currency'] = 'BDT';
-        $request['amount'] = 100;
+        $request['amount'] = 10;
         $request['merchantInvoiceNumber'] = $inv;
         $request['callbackURL'] = config("bkash.callbackURL");;
 
@@ -43,6 +45,7 @@ class BkashTokenizePaymentController extends Controller
         //using paymentID find the account number for sending params
 
         if ($request->status == 'success'){
+            session_start();
             $response = BkashPaymentTokenize::executePayment($request->paymentID);
             Log::info('Execute payment request: ',['response'=>$response]);
             //$response = BkashPaymentTokenize::executePayment($request->paymentID, 1); //last parameter is your account number for multi account its like, 1,2,3,4,cont..
@@ -56,12 +59,21 @@ class BkashTokenizePaymentController extends Controller
                  * for refund need to store
                  * paymentID and trxID
                  * */
+                
+                // dd(1,session('user_id'),2,'success');
+                $userid = session('user_id');
+                $user = User::find($userid);
+                $currentDateTime = Carbon::now();
+                $user->previous_month = $currentDateTime->format('Y-m-d H:i:s');
+                $user->is_paid = 1;
+                $user->save();
                 return BkashPaymentTokenize::success('Thank you for your payment', $response['trxID']);
             }
             return BkashPaymentTokenize::failure($response['statusMessage']);
         }else if ($request->status == 'cancel'){
             return BkashPaymentTokenize::cancel('Your payment is canceled');
         }else{
+            // dd(session('user_id'));
             return BkashPaymentTokenize::failure('Your transaction is failed');
         }
     }

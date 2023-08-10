@@ -228,6 +228,7 @@
                 var td4 = document.createElement('td');
                 var td5 = document.createElement('td');
                 var td6 = document.createElement('td');
+                td1.setAttribute('contentEditable', 'true');
                 td1.innerHTML = sl;
                 sl++;
                 td2.innerHTML = data[0].prof_name_arabic;
@@ -302,6 +303,7 @@
                 var td5 = document.createElement('td');
                 var td6 = document.createElement('td');
                 td1.innerHTML = sl;
+                td1.setAttribute('contentEditable', 'true');
                 sl++;
                 td2.innerHTML = data[0].prof_name_arabic;
                 td3.innerHTML = data[0].visa_date2.substr(0, 4);
@@ -328,6 +330,7 @@
                 // ...
             });
             document.getElementById('totalCancel').innerHTML = sl;
+            document.getElementById('totalCancel').setAttribute('contentEditable', 'true');
         }
 
         function printtable() {

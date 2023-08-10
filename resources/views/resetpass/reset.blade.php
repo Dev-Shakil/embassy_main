@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/tw-elements/dist/css/tw-elements.min.css"
@@ -25,6 +26,33 @@
 
     <!-- tailwind css cdn -->
     <script src="https://cdn.tailwindcss.com"></script>
+    @include('layout.script');
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Other script includes -->
+  
+    <!-- Additional scripts you mentioned -->
+    <script>
+      $(document).ready(function () {
+        $('#email').on('input', function () {
+          var email = $(this).val();
+          $.ajax({
+            method: 'GET',
+            url: '{{ route('checkEmail') }}',
+            data: { email: email },
+            success: function (response) {
+              if (response.exists) {
+                $('#emailExists').text('This email exists in the database.');
+              } else {
+                $('#emailExists').text("This email doesn't exist in the database.");
+              }
+            },
+            error: function () {
+              $('#emailExists').text('An error occurred while checking the email.');
+            }
+          });
+        });
+      });
+    </script>
     <script>
       tailwind.config = {
         theme: {
@@ -41,21 +69,23 @@
   </head>
   <body class="flex justify-center items-center h-screen">
     <div class="shadow-xl rounded-lg p-5 ">
-      <div class="input-group mb-3">
+      <form method="post" action="{{ route('send-mail') }}" class="input-group mb-3">
         <input
-          type="text"
+          type="email" name="email" id="email" 
           class="form-control"
           placeholder="Enter Email Address"
           aria-label="Recipient's username"
           aria-describedby="basic-addon2"
         />
+       
+        <span id="emailExists"></span>
         <button
           class="input-group-text bg-red-900 text-white focus:outline-none"
           id="basic-addon2 "
         >
           Send Email
         </button>
-      </div>
+      </form>
       <div class="input-group mb-3">
         <input
           type="text"
@@ -75,6 +105,7 @@
 
 
     <div class="shadow-xl rounded-lg p-5 text-center">
+      <h2 class="font-bold text-2xl pb-4">Set New Password</h2>
       <div class="input-group mb-3">
         
         <input
@@ -104,13 +135,35 @@
       Reset Password
     </button>
     </div>
-
+    @include('layout.script')
     <!-- bootstrap scripts -->
+    <script>
+      $(document).ready(function() {
+          
+          $('#email').on('input', function() {
+              var email = $(this).val(); 
+              $.ajax({
+                  method: 'GET',
+                  url: '{{ route('checkEmail') }}', // Replace with your actual route
+                  data: { email: email },
+                  success: function(response) {
+                      if (response.exists) {
+                          $('#emailExists').text('This email exists in the database.');
+                      } else {
+                          $('#emailExists').text("This email doesn't exists in the database.");
+                          // $('#email').val('');
+                      }
+                  }
+              });
+          });
+      });
+  </script>
     <script
       src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
       integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
       crossorigin="anonymous"
     ></script>
+   
     <script
       src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
       integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"

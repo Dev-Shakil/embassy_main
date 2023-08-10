@@ -22,11 +22,15 @@ class ViewController extends Controller
             //   dd($actualpass, $pass);
                $actualemail = $user->email;
                if($actualemail == $email && $actualpass == $pass){
+
+                    session_start();
+                    session(['user_id' => $user->id]);
                     $prev = $user->previous_month;
                    
                     $diffInSeconds = Carbon::parse($prev)->diffInSeconds(Carbon::now());
                     if($diffInSeconds<60){
-                        session_start();
+                        $user->is_paid = 0;
+                        $user->save();
                         session(['user' => $actualemail, 'role' => $user->role, 'lname'=>$user->licence_name, 'rl_no'=>$user->rl_no, 'arabic_name'=>$user->arabic_name]);	
                         if($user->role == 'user'){
                             return response()->json([
@@ -48,6 +52,8 @@ class ViewController extends Controller
                         }
                     }
                     else{
+                        $user->is_paid = 0;
+                        $user->save();
                         return response()->json([
                             'title'=> 'Subscription Required',
                             'success' => false,
@@ -78,6 +84,63 @@ class ViewController extends Controller
              ]);
            }
        }
+    }
+
+    public function forgetPassword(Request $request){
+        if($request->isMethod('GET')){
+            return view('resetpass/index');
+        }
+       
+    }
+
+    public function getemail(Request $request){
+        // dd($request->all());
+    }
+
+    public function setnewpassword(Request $request)
+    {
+        $errormsg = [
+            'text' => '',
+            'type' => 'danger'
+        ];
+    
+        session_start();
+        $code = $request->code;
+        
+        if ($_SESSION['random_code'] == $code) {
+            $password = $request->password;
+            $password2 = $request->password2;
+    
+            if ($password == $password2) {
+                $user = User::where('email', $_SESSION['requested_email'])->first(); // Use first() instead of get()
+                
+                if ($user) {
+                    $user->password = encrypt($password); // Hash the password before saving
+                    $user->save();
+    
+                    $errormsg['text'] = "Password changed";
+                    $errormsg['type'] = 'success';
+                } else {
+                    $errormsg['text'] = "No such user found with this email";
+                }
+            } else {
+                $errormsg['text'] = "Passwords don't match";
+            }
+        } else {
+            $errormsg['text'] = "Code doesn't match or may be expired";
+        }
+    
+        return view('welcome')->with('errormsg', $errormsg);
+    }
+    
+
+    public function checkEmail(Request $request)
+    {
+        $email = $request->get('email');
+
+        $user = User::where('email', $email)->first();
+
+        return response()->json(['exists' => $user !== null]);
     }
 
     public function signup(Request $request)

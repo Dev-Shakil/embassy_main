@@ -1,5 +1,5 @@
 <div class=" ">
-  <nav class="w-full h-30 px-2 py-1 bg-indigo-500 text-white flex md:flex-row flex-wrap items-center justify-between">
+  <nav class="w-full h-30 px-2 py-1 bg-gray-600 text-white flex md:flex-row flex-wrap items-center justify-between">
     <div class="flex items-center justify-between md:justify-none md:w-max w-full">
       <div class="flex md:block justify-between items-center mb-2 md:mb-0">
         <a href="{{route('user/index')}}" class=" text-none border-r-2 border-black text-lg font-semibold p-3 flex flex-col"><span class="text-center">حل الملف </span><span>File Solution</span></a>
@@ -17,13 +17,14 @@
 
       
 
-         <button data-toggle="tooltip" class="text-2xl pt-2" data-placement="bottom" title="Notification">
+         <button data-toggle="tooltip" class="text-2xl w-full pt-2" data-placement="bottom" title="Notification">
            <span class="mt-2"><i class="bi bi-bell "></i></span>
          </button>
-         <button class="text-xl btn btn-danger rounded-lg hover:bg-" data-toggle="tooltip" data-placement="bottom" title="Logout" >
-             <a href="{{route('user/logout')}}" class="flex gap-2"><i class="bi bi-box-arrow-left"></i> logout</a>
+         <button class="text-xl flex justify-center items-center p-3 shadow-xl bg-gray-100 w-[40px] h-[40px] rounded-full " data-toggle="tooltip" data-placement="bottom" title="Logout" >
+             <a href="{{route('user/logout')}}" class="flex gap-2 font-bold text-xl"><i class="bi text-red-700 font-bold bi-box-arrow-left"></i></a>
              
          </button>
+       
     
     </div>
 </nav>

@@ -651,24 +651,24 @@
             <div class="border-r border-black flex justify-between basis-3/12">
               <p class="text-xl ">
                 
-                Relationship: </p><p class="pr-1 arb">:نوع الصلة</p>
+                Relationship : </p><p class="pr-1 arb">:نوع الصلة</p>
              
             </div>
             <div class="border-r flex justify-between border-black basis-3/12">
               
-                <p class="pl-1"> Date of Birth:</p>
+                <p class="pl-1"> Date of Birth :</p>
                 <p class="pr-1 arb"> :تاريخ الميلاد</p>
             
             </div>
             <div class="text-xl text-end flex justify-between border-r border-black basis-3/12">
               
-                <p class="pl-1">Sex:</p>
+                <p class="pl-1">Sex :</p>
                 <p class="pr-1 arb" >: الجنس </p>
             
             </div>
             <div class=" border-black flex justify-between basis-3/12">
               
-                <p class="pl-1 " > Full Name:</p>
+                <p class="pl-1 " > Full Name :</p>
                 <p class="pr-1 arb">: الاسم بالكامل</p>
               
             </div>
@@ -766,10 +766,10 @@
           </div>
           <div class="mb-3 border-black pb-1 flex">
             <div class="flex text-end text-[16px] border-black basis-3/12">
-              Date: <span class="arb">التاريخ</span>
+              Date : <span class="arb">التاريخ</span>
             </div>
             <div  class="flex text-[16px] text-end border-black basis-4/12">
-              Signature:<span class="arb"> التوقيع </span>
+              Signature :<span class="arb"> التوقيع </span>
             </div>
             <div
               
@@ -784,7 +784,7 @@
           </div>
           <div class=" border-black mx-auto  flex justify-between">
             <div  class="basis-6/12 text-xl font-semibold border-black">
-              For Official use only:
+              For Official use only :
             </div>
             <div
              
@@ -796,7 +796,7 @@
           </div>
           <div class="border-b border-t border-black flex" >
             <div  class="border-r border-black flex basis-2/12">
-              <p class="text-xl w-full"> Date:</p>
+              <p class="text-xl w-full"> Date :</p>
             </div>
             <div class="border-r border-black basis-2/12">
               <p class="text-xl font-bold pl-2">
@@ -807,7 +807,7 @@
               class="flex text-xl pl-1 text-end  border-r border-black basis-2/12"
             >
               <p class="flex justify-between">
-                Authorization:<p class="ml-10 arb">التاريخ </p>
+                Authorization:<p class="ml-6 arb">التاريخ </p>
               </p>
             </div>
             <div class="border-r border-black basis-2/12">
@@ -843,14 +843,14 @@
               
               class="flex text-xl font-semibold border-black text-center justify-between border-r basis-6/12"
             >
-              <p>Date:</p>
+              <p>Date :</p>
   
               <p class="mr-5 arb">:التاريخ </p>
             </div>
             <div
               class="flex text-xl font-semibold text-end border-black w-full justify-between pl-3 basis-6/12"
             >
-              Visa No: <p class="font-bold text-xl mr-10" >{{$candidates[0]->visa_no}}</p>
+              Visa No : <p class="font-bold text-xl mr-10" >{{$candidates[0]->visa_no}}</p>
               <p class="arb"> :أشربرقم</p>
             </div>
           </div>
@@ -859,21 +859,21 @@
               
               class="flex text-xl font-semibold text-end border-black border-r justify-between basis-4/12"
             >
-              <p>Fee Collected:</p>
+              <p>Fee Collected :</p>
               <p class="mr-5 arb">:المبلغ المحصل </p>
             </div>
             <div
               class="flex text-xl font-semibold text-end border-black border-r justify-between basis-4/12"
             >
-              <p class="pl-1">Type:</p>
+              <p class="pl-1">Type :</p>
               
               <p class="mr-5 arb">:نوعها</p>
             </div>
             <div
               class="flex text-xl font-semibold text-end border-black justify-between basis-4/12"
             >
-              <p class="pl-1">Duration:</p>
-              <p class="arb">:مدتها</p>
+              <p class="pl-1">Duration :</p>
+              <p class="arb">: مدتها</p>
             </div>
           </div>
           <div  class=""><div class="border-black mt-[30px] flex">
