@@ -37,6 +37,7 @@ Route::post('/password-reset', [ViewController::class, 'setnewpassword'])->name(
 Route::any('/user/index', [UserController::class, 'index'])->name('user/index');
 Route::any('/user/visaadd/{id}', [UserController::class, 'visa_add'])->name('user/visaadd');
 Route::any('/user/edit/{id}', [UserController::class, 'edit'])->name('user/edit');
+Route::any('/user/view/{id}', [UserController::class, 'view'])->name('user/view');
 Route::any('/user/personal_edit/{id}', [UserController::class, 'personal_edit'])->name('user/personal_edit');
 Route::any('/user/visa_edit/{id}', [UserController::class, 'visa_edit'])->name('user/visa_edit');
 Route::any('/user/embassy_list', [UserController::class, 'embassy_list'])->name('user/embassy_list');

@@ -53,4 +53,9 @@
           }
         }
       }
+      document.getElementById("closeModal").addEventListener("click", function() {
+    document.getElementById("exampleModal").classList.remove("show");
+    document.body.classList.remove("modal-open");
+    document.querySelector(".modal-backdrop").remove();
+  });
     </script>

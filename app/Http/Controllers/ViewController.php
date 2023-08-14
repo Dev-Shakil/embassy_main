@@ -28,7 +28,7 @@ class ViewController extends Controller
                     $prev = $user->previous_month;
                    
                     $diffInSeconds = Carbon::parse($prev)->diffInSeconds(Carbon::now());
-                    if($diffInSeconds<60){
+                    if($diffInSeconds<2629746){
                         $user->is_paid = 0;
                         $user->save();
                         session(['user' => $actualemail, 'role' => $user->role, 'lname'=>$user->licence_name, 'rl_no'=>$user->rl_no, 'arabic_name'=>$user->arabic_name]);	
@@ -52,7 +52,7 @@ class ViewController extends Controller
                         }
                     }
                     else{
-                        $user->is_paid = 0;
+                        $user->is_paid = 1;
                         $user->save();
                         return response()->json([
                             'title'=> 'Subscription Required',
@@ -150,6 +150,7 @@ class ViewController extends Controller
         }
         else{
             $rname = request('licence_name');
+            $arabic_name = request('arabic_name');
             $rno = request('rl_no');
             $email = request('email');
            
@@ -157,13 +158,17 @@ class ViewController extends Controller
             $pass = request('pass');
             $pass1 = request('pass1');
             // dd(1, $pass == $pass1, 2, request('pass'),3, request('pass1'));
+
+            $user = User::where('email', $email)->first();
+            if(!$user){
             if($pass == $pass1){
                 $user = new User();
                 $pass = encrypt($pass);
                 $user->licence_name = $rname;
+                $user->arabic_name = $arabic_name;
                 $user->rl_no = $rno;
                 $user->email = $email;
-               
+                $user->phone = "";
                 $user->office_address = $address;
                 $user->password = $pass;
                 $user->embassy_man_name = "";
@@ -172,7 +177,7 @@ class ViewController extends Controller
                 $user->role = 'user';
                 $currentDateTime = Carbon::now();
                 $user->previous_month = $currentDateTime->format('Y-m-d H:i:s');
-                $user->is_paid = 0;
+                $user->is_paid = 1;
                 if($user->save()){
                     return response()->json([
                         'title'=> 'Success',
@@ -200,6 +205,14 @@ class ViewController extends Controller
                     'success' => false,
                     'icon' => 'error',
                     'message' => 'Password does not match!',
+                    'redirect_url' => '/'
+                ]);
+            }}else{
+                return response()->json([
+                    'title'=> 'Error',
+                    'success' => false,
+                    'icon' => 'error',
+                    'message' => 'Your Email Allready Exists! Please Try With an another Email',
                     'redirect_url' => '/'
                 ]);
             }

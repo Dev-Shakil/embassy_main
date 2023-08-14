@@ -14,6 +14,9 @@
 </head>
 <body>
     @include("layout.navbar")
+   
+  
+     
     <div class="container  ">
         
         <div class="d-flex max-w-[1050px] mx-auto mt-2 bg-gray-200 rounded-lg px-2 py-1 items-center" style="justify-content: space-between;">
@@ -158,7 +161,7 @@
             </tfoot>
         </table>
         
-        <div style="display: flex; flex-wrap: wrap; justify-content: center; font-size: 1.2rem; font-weight: bold; text-align: center; padding: 0;">
+        <div style="display: flex; flex-wrap: wrap; justify-content: center; font-size: 1rem; font-weight: bold; text-align: center; padding: 0;">
             <div style="flex-basis: 50%; flex-grow: 1;">: الختم</div>
             <div style="flex-basis: 50%; flex-grow: 1;">: المستلم</div>
             <div style="flex-basis: 50%; flex-grow: 1;">: التعبئة</div>
@@ -220,7 +223,7 @@
         //       <td>${data[0].passport_number}</td>
         //   </tr>`;
 
-                tr.classList.add('border', 'border-black', 'p-0', 'text-[11px]', 'text-center', 'relative', 'group');
+                tr.classList.add('border', 'border-black', 'p-0', 'text-[13px]', 'text-center', 'relative', 'group');
 
                 var td1 = document.createElement('td');
                 var td2 = document.createElement('td');
@@ -288,7 +291,7 @@
         //       <td>${data[0].passport_number}</td>
         //   </tr>`;
 
-                tr.classList.add('border', 'border-black', 'p-0', 'text-[11px]', 'text-center', 'relative', 'group');
+                tr.classList.add('border', 'border-black', 'p-0', 'text-[13px]', 'text-center', 'relative', 'group');
                 // tr2.classList.add('border', 'border-black', 'p-0', 'text-xl', 'text-center', 'relative', );
 
 

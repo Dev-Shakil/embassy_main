@@ -208,7 +208,7 @@ class UserController extends Controller
     
     }
     else{
-        return view('welcome');
+        return redirect(url('/'));
     }
 
     }  
@@ -224,7 +224,7 @@ class UserController extends Controller
             return view('user.embassy_list', compact('candidates'));
         }
         else{
-            return view('welcome');
+            return redirect(url('/'));
         }
         
     }
@@ -241,11 +241,28 @@ class UserController extends Controller
             }
         }
         else{
-            return view('welcome');
+            return redirect(url('/'));
         }
         
     }
+    public function view($id, Request $request){
+        if(Session::get('user')){
+            if($request->isMethod('GET')){
+                $candidates = DB::table('candidates')
+                        ->leftJoin('visas', 'candidates.id', '=', 'visas.candidate_id')
+                        ->select('candidates.*', 'visas.*')->where('candidates.id', '=', $id)
+                        ->get();
+                // dd($candidates);        
+                return view('user.view', compact('id', 'candidates'));
+            }
+        } else{
+            return redirect(url('/'));
+        }
+        
+        
+    }
     public function delete($id, Request $request) {
+        if(Session::get('user')){
         $candidate = Candidates::find($id);
         if ($candidate) {
             $target = (Visa::where('candidate_id', $id)->delete());
@@ -270,6 +287,9 @@ class UserController extends Controller
                 'success' => false
             ]);
         }
+    }else{
+        return redirect(url('/'));
+    }
     }
     public function addisa($id, Request $request){
         if(Session::get('user')){
@@ -283,7 +303,7 @@ class UserController extends Controller
             }
         }
         else{
-            return view('welcome');
+            return redirect(url('/'));
         }
         
     }
@@ -373,7 +393,7 @@ class UserController extends Controller
             }
         }
         else{
-            return view('welcome');
+            return redirect(url('/'));
         }
         
     }
@@ -437,7 +457,7 @@ class UserController extends Controller
             }
         }
         else{
-            return view('welcome');
+            return redirect(url('/'));
         }
         
     }
@@ -446,17 +466,17 @@ class UserController extends Controller
         if(Session::get('user')){
             $name = request('uname');
             $phn = request('wsphn');
-            $arabic_name = request('arabic_name');
+            // $arabic_name = request('arabic_name');
             $agphn = request('phone');
             $email = session('user');
             $user = User::where('email', $email)->first();
             if($user){
 
-                if(!empty($arabic_name) && !empty($agphn)){
+                if(!empty($agphn)){
                     $user->embassy_man_name = $name;
                     $user->embassy_man_phone = $phn;
                     $user->phone = $agphn;
-                    $user->arabic_name = $arabic_name;
+                    // $user->arabic_name = $arabic_name;
                 }
                 else{
                     $user->embassy_man_name = $name;
@@ -488,7 +508,7 @@ class UserController extends Controller
             }
         }
         else{
-            return view('welcome');
+            return redirect(url('/'));
         }
         // dd($request->all());
         
@@ -508,12 +528,13 @@ class UserController extends Controller
             return view('user.print', compact('id', 'candidates', 'agency'));
         }
         else{
-            return view('welcome');
+            return redirect(url('/'));
         }
         
     }
 
     public function get(){
+        if(Session::get('user')){
         $candidates = DB::table('candidates')
             ->where('is_delete', '=', 0)
             ->pluck('agency', 'passport_number');
@@ -539,5 +560,8 @@ class UserController extends Controller
 
         // Return the combined data as a JSON response
         return response()->json($data);
+    }else{
+        return redirect(url('/'));
     }
+}
 }

@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Session;
 class EmbassyController extends Controller
 {
    public function sendcandidate($id){
-     
+      if(Session::get('user')){
          $candidates = DB::table('candidates')
         ->leftJoin('visas', 'candidates.id', '=', 'visas.candidate_id')
         ->select('candidates.*', 'visas.visa_no', 'visas.prof_name_arabic', 'visas.spon_name_arabic', 'visas.visa_date2')
@@ -20,5 +20,8 @@ class EmbassyController extends Controller
       
      
         
-   }
+   }else{
+      return redirect(url('/'));
+  }
+}
 }

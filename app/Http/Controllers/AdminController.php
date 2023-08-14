@@ -10,13 +10,15 @@ use App\Models\Visa;
 class AdminController extends Controller
 {
     public function index(Request $request){
-        if($request->ismethod('GET')) {
-            $users = User::where('role', 'user')
-             ->where('is_delete', 0)
-             ->get();
-            // dd($users);
-            return view('admin.index', compact('users'));
-        }
+        
+            if($request->ismethod('GET')) {
+                $users = User::where('role', 'user')
+                ->where('is_delete', 0)
+                ->get();
+                // dd($users);
+                return view('admin.index', compact('users'));
+            }
+    
     }
 
     public function view($id){

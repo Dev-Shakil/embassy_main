@@ -103,7 +103,7 @@
               />  -->
            
               <svg id="barcode1" class="w-[250px] "></svg>
-              <span class=' w-[190px] absolute bottom-5 left-8 print'>    Visa Date:  {{$candidates[0]->visa_date2}}</span>
+              <span class=' w-[190px] absolute bottom-5 left-8 text-center'>    Visa Date:  {{$candidates[0]->visa_date2}}</span>
            
             </div>
             <div  class="w-[300px] text-end text-xl">
@@ -118,7 +118,7 @@
                 القسم القنصلي
               </p>
               <p class="text-lg">
-                EMBASSY OF SAUDI ARABIA,
+                EMBASSY OF SAUDI ARABIA
                 <br />
                 CONSULAR SECTION
               </p>
@@ -129,20 +129,20 @@
         // dd($candidates[0])
       ?>
         <div class="border-b border-black pb-1 flex flex-wrap items-center " >
-            <div class="basis-1/6"> 
+            <div class="basis-1/12"> 
               <p class="text-lg w-full">Full Name:</p>
             </div>
-            <div  class="flex flex-row basis-4/6">
-              <p class="text-2xl font-semibold pr-3 uppercase">
-                {{$candidates[0]->name}} S/O
-              </p>
-              
-              <p class="text-2xl font-semibold">
+            <div  class="flex flex-row justify-center basis-10/12 ">
+              <span class="text-2xl font-semibold pr-3 uppercase">
+                {{$candidates[0]->name}} S/O  {{$candidates[0]->father}}
+              </span>
+              {{-- S/O
+              <span class="text-2xl font-semibold">
                 {{$candidates[0]->father}}
-              </p>
+              </span> --}}
             </div>
             <div
-             class="arb flex text-lg font-semibold text-end justify-end basis-1/6"
+             class="arb flex text-lg font-semibold text-end justify-end basis-1/12"
             >
               :اسم الكامل
             </div>
@@ -453,9 +453,9 @@
             </div>
             <div
               
-              class="flex text-lg font-semibold text-end  border-black arb basis-2/12"
+              class="flex text-lg font-semibold text-end justify-end border-black arb basis-2/12"
             >
-              :Jعنوان الشركة (المؤسسة)رقم التلفون
+              : الغرض من السفر
             </div>
           </div>
           <div class=" border-black flex">
@@ -494,7 +494,7 @@
             <div class="border-r border-black basis-3/12">
               <p class="text-2xl font-bold text-center  py-1">
                 <?php
-                $inputDate = $candidates[0]->passport_expire_date;
+                $inputDate = $candidates[0]->passport_issue_date;
 
                 // Convert the date format
                 $formattedDate = date('d-m-Y', strtotime($inputDate));
@@ -529,14 +529,14 @@
           <div class="border-b border-black flex">
             <div  class="border-r border-black basis-4/12">
               <p class="text-lg w-full">
-                Duration of stay in the Kingdom: <span>02, Years</span>
+                Duration of stay in the Kingdom: <span className="font-semibold">02 Years</span>
               </p>
             </div>
             <div  class="border-r border-black basis-4/12">
               <p class="text-lg pl-2"> Date of Arrival:</p>
             </div>
             <div  class="flex text-lg text-end border-black basis-4/12">
-              <p class="pl-2"> Date of departure : </p>
+              <p class="pl-2"> Date of Departure : </p>
             </div>
           </div>
           <div class=" border-black text-xl flex w-full " >
@@ -795,23 +795,23 @@
             </div>
           </div>
           <div class="border-b border-t border-black flex" >
-            <div  class="border-r border-black flex basis-2/12">
-              <p class="text-xl w-full"> Date :</p>
-            </div>
-            <div class="border-r border-black basis-2/12">
+            <div  class="border-r border-black flex justify-between basis-5/12">
+              <p class="text-xl"> Date :</p>
+           
               <p class="text-xl font-bold pl-2">
                 {{$candidates[0]->visa_date2}}
               </p>
+              <p class="mr-3 arb">: التاريخ </p>
             </div>
             <div
-              class="flex text-xl pl-1 text-end  border-r border-black basis-2/12"
+              class="flex text-xl pl-1 text-end  border-black basis-1/12"
             >
               <p class="flex justify-between">
-                Authorization:<p class="ml-6 arb">التاريخ </p>
+                Authorization:
               </p>
             </div>
-            <div class="border-r border-black basis-2/12">
-              <p class="text-2xl text-center font-semibold w-full">
+            <div class=" border-black basis-2/12">
+              <p class="text-2xl text-center font-semibold ">
               
               </p>
             </div>
@@ -822,12 +822,12 @@
             </div>
           </div>
           <div class="border-black border-b flex">
-            <div class="flex text-xl text-end border-black basis-2/12 border-r">
+            <div class="flex text-xl text-end border-black basis-2/12">
               Visit/Work :
             </div>
             <div
               
-              class=" basis-8/12 text-2xl font-bold text-end border-black border-r "
+              class=" basis-8/12 text-2xl font-bold text-end border-black "
             >
               <p class="text-end px-1 arb pr-2">
                 {{$candidates[0]->spon_name_arabic}}
@@ -877,27 +877,30 @@
             </div>
           </div>
           <div  class=""><div class="border-black mt-[30px] flex">
-            <div class="flex text-xl font-semibold basis-4/12  flex-col">
+            <div class="flex text-xl font-semibold basis-3/12  flex-col">
               <p class="arb">رئيس القسم القنصلي</p>
               <p class="mr-5">Head of consular Section</p>
             </div>
-            <div class="flex text-xl  text-end basis-4/12">
+            <div class="flex text-xl flex-col justify-center text-end basis-6/12">
+              <div class="flex justify-center">
               <p class="mb-4 ml-4 font-semibold">
                 {{$candidates[0]->spon_id}}
               </p>
               <p class="mb-4 ml-14 arb">رقم الكفيل</p>
             </div>
+              <span class="flex justify-center">
+               
+                <svg id="passport_no" class="h-[110px] w-[340px]"></svg>
+              </span>
+            </div>
             <div
               
-              class="flex text-xl font-semibold text-end justify-between flex-col basis-4/12">
+              class="flex text-xl font-semibold text-end  flex-col basis-3/12">
               <p class="arb"> مدقق البيانات </p>
               <p class="">Cheeked by</p>
             </div>
           </div>
-            <span class="flex justify-center">
-               
-              <svg id="passport_no" class="h-[110px] w-[340px]"></svg>
-            </span>
+           
           </div>
        
           
@@ -913,10 +916,10 @@
      
      <!-- ksa 2nd page design starts -->
     
-     <div class=" w-[1050px] bg-white p-5 text-2xl pl-[50px] m-5 py-[12rem] mx-auto">
+     <div class=" w-[1050px] bg-white p-5 text-2xl pl-[50px] m-5 py-[10rem] mx-auto">
      
      
-        <p class="mb-10 pt-[]">
+        <p class="mb-10 pt-[120px]">
             TO
             <br />
             THE CHIEF OF CONSULATE SECTION
@@ -982,7 +985,6 @@
             </li>
           </ol>
           <br />
-          <br />
           <p>
             I DO HEREBY CONFIRM AND DECLARE THAT THE RIGION STATED IN THE VISA FROM
             AND FORWARDING LETTER IS FULLY CORRECT. I ALSO UNDER TAKE WITH MY OWN
@@ -990,7 +992,7 @@
             OFFICE,IF THE STATEMENT IS FOUND INCORRECT.
           </p>
           <br />
-          <p class="mb-[100px] ">
+          <p class="mb-[60px] ">
             WE THEREFORE, REQUEST YOUR EXELLENCY TO KINDLY ISSUE WORK VISA OUT OF
             <span contenteditable="true">1</span> VISAS AND OBLIGE THERE BY.
           </p>
@@ -1006,7 +1008,7 @@
 
 
      <!-- ksa 3rd page design Starts-->
-     <div class="w-[1050px] bg-white pt-[120px] pb-[20px] mx-auto">
+     <div class="w-[1050px] bg-white pt-[50px] pb-[20px] mx-auto">
         <h1 class="font-bold text-4xl text-center underline underline-offset-8 py-10">
           EMPLOYMENT AGREEMENT
         </h1>
@@ -1113,7 +1115,7 @@
           </li>
           <hr/>
         </ul>
-        <div class="px-[20px] mx-auto w-[900px] mt-[150px] flex justify-between text-xl font-bold ">
+        <div class="px-[20px] mx-auto w-[900px] mt-[120px] flex justify-between text-xl font-bold ">
           <p class="border-t-2  border-black">
             Signature for the 1st party
           </p>
@@ -1325,7 +1327,7 @@
             </tr>
           </tbody>
         </table>
-        <div class="flex justify-end items-end pt-1 px-5 flex-col mx-auto w-[820px] text-2xl leading-8">
+        <div class="flex justify-end items-end pt-1 px-5 flex-col mx-auto w-[770px] text-2xl leading-8">
           <h2>
             <span class="uppercase font-bold"> {{$agency[0]->licence_name}} </span>:
             <span class="arb">  اسم المكتب

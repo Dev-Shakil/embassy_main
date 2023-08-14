@@ -6,24 +6,11 @@
         <title>KSA Form Print Solution</title>
         <link rel="icon" type="image/x-icon" href="{{asset('assets/images/fav.png')}}">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <link href="path/to/bootstrap.min.css" rel="stylesheet">
+        <script src="path/to/bootstrap.min.js"></script>
         @include('layout.head')
        
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        important:true,
-        theme: {
-          extend: {
-            colors: {
-              clifford: "#da373d",
-            },
-            backgroundImage:{
-                'hero-pattern': "url('./img/hero2.jpg')",
-            }
-          },
-        },
-      };
-    </script>
+  
     <style>
      .banner{ 
       background-image: url('./assets/images/sa4.jpg');
@@ -71,100 +58,81 @@
       class="flex justify-between items-center text-primary h-[11vh] md:px-7 px-2 font-semibold md:text-xl text-md py-15 shadow-2xl border-b-2 border-black"
     >
       <div class="flex gap-3 ">
-        <div class="md:text-2xl text-md p-2 border-primary rounded-xl border-r-4 flex flex-col ">
+        <div class="xl:text-2xl md:text-xl text-md p-2 border-primary rounded-xl border-r-4 flex flex-col ">
           <span class="text-center" >  حل الملف   </span>File Solution
         </div>
-        <div class="flex items-center md:text-2xl text-lg">Visa Application Form Platform</div>
+        <div class="flex items-center xl:text-2xl md:text-xl text-md">Visa Application Form Platform</div>
       </div>
       <div class="flex gap-4  items-center">
     
         {{-- https://drive.google.com/file/d/1aYGbaODafFUDw2fVQ9O2TPGyQ0dwgrtp/view?usp=sharing --}}
             <!-- Button trigger modal -->
-        <a class="" href="./assets/images/final.pdf" target="_blank">Help</a>
-<button  class="focus:border-none md:text-[22px] text-[16px] border-primary p-2 rounded-xl border-l-4" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <a class="md:text-[19px] xl:text-[22px] text-[16px]" href="./assets/images/final.pdf" target="_blank">Help</a>
+<button  class="focus:border-none md:text-[19px] xl:text-[22px] text-[16px] border-primary p-2 rounded-xl border-l-4" data-bs-toggle="modal" data-bs-target="#exampleModal">
     Register
   </button>
   
   <!-- Modal -->
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-        <div class="modal-content">
+        <div class="modal-content mx-10 my-8 md:m-0">
           <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLongTitle">Register Account</h5>
-            {{-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button> --}}
+            <button type="button" class="close text-2xl" data-bs-dismiss="modal" id="closeModal" aria-label="Close" >
+              <span aria-hidden="true" class="text-xl" >&times;</span>
+            </button>
           </div>
           <div class="modal-body ">
-              <div class="container mt-5">
-                <form id="signupform" action="{{route('signup')}}" method="post">
+              <div class="container mt-2">
+                <form id="signupform" action="{{route('signup')}}" method="post" class="">
                   @csrf
                   <!-- 2 column grid layout with text inputs for the first and last names -->
-                  <div class="row mb-4">
-                      <div class="col">
-                        <div class="form-outline">
+                      <div class="grid md:grid-cols-2 grid-cols-1 gap-3 w-full ">
+                        <div class="form-outline mb-3">
                           <label class="form-label" for="form6Example1">Recruiting Licence Name</label>
                           <input type="text" id="form6Example1" placeholder="Recruiting Licence Name" class="form-control" required name="licence_name"/>
                           
                         </div>
-                      </div>
-                      <div class="col">
-                        <div class="form-outline">
+                     
+                        <div class="form-outline mb-3">
                           <label class="form-label" for="form6Example1">Recruiting Licence Name (Arabic)</label>
                           <input type="text" id="form6Example1" placeholder="Recruiting Licence Name" class="form-control" required name="arabic_name"/>
                           
                         </div>
-                      </div>
-                     
-                    </div>
+                      
 
-                    <div class="row mb-4">
-                      <div class="col">
-                        <div class="form-outline">
+                    
+                        <div class="form-outline mb-3">
                             <label class="form-label" for="form6Example2">Recruiting Licence Number (RL)</label>
                           <input type="text" id="form6Example2" class="form-control" placeholder="Recruiting Licence Number (123)" required name="rl_no"/>
-                          
                         </div>
-                      </div>
-                      <div class="col">
-                        <div class="form-outline ">
+                 
+                        <div class="form-outline mb-3 ">
                             <label class="form-label" for="form6Example3">Email</label>
                           <input type="email" id="form6Example3" required placeholder="abc@gmail.com" class="form-control" name="email"/>
                           
                         </div>
                       </div>
-                      
-                    </div>
-                  
-                    <!-- Text input -->
-                    
-                  
-                    <!-- Text input -->
-                    
-                  
-                    <!-- Email input -->
-                    <div class="form-outline mb-4">
+                    <div class="form-outline mb-3 mb-4 w-full">
                         <label class="form-label" for="form6Example5">Office Address </label>
                         <textarea class="form-control" id="form6Example7" required placeholder="Type Your Office Address" name="address" rows="3"></textarea>
                       
                     </div>
-                  
-                    <div class="row mb-4">
-                        <div class="col">
-                            <div class="form-outline ">
+                    <div class=" grid md:grid-cols-2 grid-cols-1 gap-3 w-full ">
+                  <div class="form-outline mb-3 ">
                                 <label class="form-label" for="form6Example6" >Password</label>
                               <input type="password" id="form6Example6" required placeholder="Enter Password" class="form-control" name="pass" />
                             
                             </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-outline">
+                       
+                       
+                            <div class="form-outline mb-3">
                                 <label class="form-label" for="form6Example7" >Confirm Password</label>
                                 <input type="password" id="form6Example6" required placeholder="Enter Confirm Password"  class="form-control" name="pass1" />
                               
                             </div>
-                        </div>
-                      </div>
+                          </div>
+                      
 
 
 
@@ -181,8 +149,9 @@
                     </div>
                   
                     <!-- Submit button -->
-                    <button type="submit" class="btn btn-primary btn-block mb-4 text-blue-800 hover:text-white text-xl">Sign Up</button>
-                
+                   
+                    <button type="submit" class="btn btn-primary btn-block mb-4 text-blue-800 hover:text-white text-xl text-center">Sign Up</button>
+                    
               </form>
               </div>
           </div>
@@ -262,9 +231,8 @@
 
 
    <!-- bootstrap scripts -->
-   @include('layout.script')
-   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-   
+   @include('layout.script');
+  
    <script type="text/javascript">
     $(document).ready(function() {
         $('#loginform').on('submit', function(e) {

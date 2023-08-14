@@ -161,11 +161,11 @@
 
                       }
                       else {
-                        echo '<label class="form-label" for="form6Example4">Agency Owner Phone Number</label>';           
+                        echo '<label class="form-label" for="form6Example4">Agency Owner Phone Number</label><input type="text" id="form6Example4" class="form-control" name="phone"/>';           
                       }
                     @endphp
                         {{-- <label class="form-label" for="form6Example4">Agency Owner Phone Number</label> --}}
-                        @php
+                        {{-- @php
                         // dd($user->phone);
                         if($user->phone){
                           echo '
@@ -176,7 +176,7 @@
                         else {
                           echo '<input type="text" id="form6Example4" class="form-control" name="phone"/>';           
                         }
-                      @endphp
+                      @endphp --}}
                     </div>
                   </div>
                 </div>
@@ -225,23 +225,7 @@
         </div>
       </div>
     </div>
-    {{-- <div class="modal fade" id="warning" tabindex="-1" aria-labelledby="warningModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header bg-indigo-300">
-            <h5 class="modal-title text-black font-semibold" id="warningModalLabel">Warning</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            sdf
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="md:text-lg text-md cursor-pointer bg-green-700 p-1 px-2 rounded-lg text-white bg-indigo-600 text-white" data-bs-dismiss="modal">Close</button>
-           
-          </div>
-        </div>
-      </div>
-    </div> --}}
+   
 
     <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-xl">
@@ -590,7 +574,7 @@
               // Output the formatted date
               echo $formattedDate;
               ?></td>
-            <td>{{$candidate->name}}</td>
+            <td><a href="{{ route('user/view', ['id' => $candidate->id]) }}" class="font-semibold hover:font-bold cursor-pointer hover:text-blue-400 ">{{$candidate->name}}</a></td>
             <td>{{$candidate->passport_number}}</td>
             <td> <?php
               $inputDate = $candidate->date_of_birth;
@@ -630,6 +614,7 @@
 
               <div>
               <div class="md:text-lg text-md"><a href="{{ route('user/edit', ['id' => $candidate->id]) }}" class="fw-semibold text-success"><i class="bi bi-pencil-square mr-1"></i>Edit</a></div>
+              
               <div class="md:text-lg text-md">
                 <a href="#" onclick="return surity('{{ $candidate->id }}')" class="fw-semibold text-danger">
                   <i class="bi bi-trash mr-1"></i>Delete

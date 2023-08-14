@@ -32,7 +32,7 @@ class Demomail extends Mailable
     public function envelope()
     {
         return new Envelope(
-            subject: 'Demomail',
+            subject: 'Reset Password Mail',
         );
     }
 

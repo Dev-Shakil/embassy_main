@@ -18,7 +18,7 @@ class MailController extends Controller
             $_SESSION['random_code'] = $randomString;
             $_SESSION['requested_email'] = $request->email;
             $mailData = [
-                'title' => 'Mail From Arnab',
+                'title' => 'Mail From Visa Application Form Platform',
                 'body'  => 'Password Reset Code',
                 'code'  => $randomString,
             ];
