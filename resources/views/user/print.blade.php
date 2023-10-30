@@ -992,7 +992,7 @@
             OFFICE,IF THE STATEMENT IS FOUND INCORRECT.
           </p>
           <br />
-          <p class="mb-[60px] ">
+          <p class="mb-[100px] ">
             WE THEREFORE, REQUEST YOUR EXELLENCY TO KINDLY ISSUE WORK VISA OUT OF
             <span contenteditable="true">1</span> VISAS AND OBLIGE THERE BY.
           </p>
@@ -1348,16 +1348,18 @@
         JsBarcode("#barcode1", "{{$candidates[0]->visa_no}}", {
             textPosition:"top",
             fontSize:30,
-            width: 4,
+            format: "code39",
+            width: 2,
             height: 110,
             fontSize:30,
             textMargin:10,
             text:"Visa No: {{$candidates[0]->visa_no}}",
         });;
         JsBarcode("#passport_no", "{{$candidates[0]->passport_number}}", {
-            fontSize:40,
-            width: 5,
-            // height: 50,
+            fontSize:10,
+            width: 1,
+            height: 40,
+            format: "code39",
             textMargin:1,
             text:"Passport No: {{$candidates[0]->passport_number}}"
         });;

@@ -14,9 +14,6 @@
 </head>
 <body>
     @include("layout.navbar")
-   
-  
-     
     <div class="container  ">
         
         <div class="d-flex max-w-[1050px] mx-auto mt-2 bg-gray-200 rounded-lg px-2 py-1 items-center" style="justify-content: space-between;">
@@ -26,11 +23,11 @@
                 <input list="candidates" name="candidate" id="candidate" class="form-control" onchange="getdata()">
                 <input list="candidates" name="cancelInput" id="cancelInput" class="form-control hidden" onchange="getCanceldata()">
                 </div><div class="text-xl font-bold">
-                      <input type="radio" id="New" name="emb_list" value="New" onchange="toggleInputBox()" checked/>
-                      <label for="New">New</label>
-                      <input type="radio" id="Cancel" name="emb_list" value="Cancel" onchange="toggleInputBox()"/>
-                      <label for="Cancel">Cancelletion</label>
-                      </div>
+                      <input type="radio" id="New" name="emb_list" value="New" onchange="toggleInputBox()" checked/>
+                      <label for="New">New</label>
+                      <input type="radio" id="Cancel" name="emb_list" value="Cancel" onchange="toggleInputBox()"/>
+                      <label for="Cancel">Cancelletion</label>
+                      </div>
             </div>
            
             
@@ -153,7 +150,7 @@
             <tfoot>
                 <tr class="[&>td]:border [&>td]:border-black [&>td]:p-0 text-lg text-center relative group">
                     
-                    <td colspan="5" class="font-bold text-xl text-end px-5" id="totalCancel">
+                    <td colspan="5" contentEditable class="font-bold text-xl text-end px-5" id="totalCancel">
                      
                     </td>
                     <td>المجموع</td>
@@ -200,6 +197,7 @@
 
         var sl = 1;
         var sl_cancel = 1
+        var ArrayData = []
         function getdata(){
             var id = document.getElementById('candidate').value;
             
@@ -212,19 +210,46 @@
             .then(response => response.json())
            // Parse the response as JSON
             .then(data => {
+
+
+                ArrayData.push(data[0]);
+                console.log(ArrayData)
+              
+
                 var tbody = document.getElementById('table_body');
                 var tr = document.createElement('tr');
-        //         var tr2 = `<tr class="border border-black p-0 text-xl text-center relative group">
-        //       <td>${sl}</td>
-        //       <td>${data[0].prof_name_arabic}</td>
-        //       <td>${data[0].visa_date2}</td>
-        //       <td>${data[0].visa_no}</td>
-        //       <td>${data[0].spon_name_arabic}</td>
-        //       <td>${data[0].passport_number}</td>
-        //   </tr>`;
-
+               
                 tr.classList.add('border', 'border-black', 'p-0', 'text-[13px]', 'text-center', 'relative', 'group');
 
+            //     ArrayData.forEach(function(element, index, array) {
+            //         var td1 = document.createElement('td');
+            //     var td2 = document.createElement('td');
+            //     var td3 = document.createElement('td');
+            //     var td4 = document.createElement('td');
+            //     var td5 = document.createElement('td');
+            //     var td6 = document.createElement('td');
+            //     td1.setAttribute('contentEditable', 'true');
+            //     td1.textContent = index + 1;
+            //     td2.innerHTML = data[0].prof_name_arabic;
+            //     td3.innerHTML = data[0].visa_date2.substr(0, 4);
+                
+            //     td3.setAttribute('contentEditable', 'true');
+
+            //     td4.innerHTML = data[0].visa_no;
+            //     td5.innerHTML = data[0].spon_name_arabic;
+            //     td6.innerHTML = data[0].passport_number;
+                
+            //     tr.appendChild(td2);
+            //     tr.appendChild(td3);
+            //     tr.appendChild(td4);
+            //     tr.appendChild(td5);
+            //     tr.appendChild(td6);
+            //     tr.appendChild(td1);
+               
+                   
+            //    });
+              
+            //    tbody.appendChild(tr);
                 var td1 = document.createElement('td');
                 var td2 = document.createElement('td');
                 var td3 = document.createElement('td');
@@ -236,6 +261,9 @@
                 sl++;
                 td2.innerHTML = data[0].prof_name_arabic;
                 td3.innerHTML = data[0].visa_date2.substr(0, 4);
+                
+                td3.setAttribute('contentEditable', 'true');
+
                 td4.innerHTML = data[0].visa_no;
                 td5.innerHTML = data[0].spon_name_arabic;
                 td6.innerHTML = data[0].passport_number;
@@ -248,6 +276,18 @@
                 tr.appendChild(td1);
                 tbody.appendChild(tr);
                 // tbody.appendChild(tr2);
+                var deleteButton = document.createElement('button');
+    deleteButton.textContent = 'Delete';
+    deleteButton.classList.add('delete-button');
+
+    // Add a click event handler to the delete button
+    deleteButton.addEventListener('click', function () {
+        // Remove the parent row when the delete button is clicked
+        tr.remove();
+    });
+    
+    // Append the delete button to the row
+    tr.appendChild(deleteButton);
                 console.log(data);
                 document.getElementById('candidate').value = null;
             })
@@ -273,32 +313,12 @@
                 var cancelShow = data[0].passport_number;
                 var tbody = document.getElementById('table_cancel_body');
                 var cancelTitle = document.getElementById('cancel_head');
-                // if(cancelShow===null){
-                //     console.log("true")
-                //     cancelTitle.style.display = "none";
-                // }else{
-                //     console.log("false")
-                //     cancelTitle.style.display = "block";
-                // }
                 var tr = document.createElement('tr');
-                // var tr2 = document.createElement('tr');
-        //         var tr2 = `<tr class="border border-black p-0 text-xl text-center relative group">
-        //       <td>${sl}</td>
-        //       <td>${data[0].prof_name_arabic}</td>
-        //       <td>${data[0].visa_date2}</td>
-        //       <td>${data[0].visa_no}</td>
-        //       <td>${data[0].spon_name_arabic}</td>
-        //       <td>${data[0].passport_number}</td>
-        //   </tr>`;
+                
+               
 
                 tr.classList.add('border', 'border-black', 'p-0', 'text-[13px]', 'text-center', 'relative', 'group');
-                // tr2.classList.add('border', 'border-black', 'p-0', 'text-xl', 'text-center', 'relative', );
-
-
-
-                // var tdc1 = document.createElement('td');
-                // tdc1.innerHTML ="إلغاء" ;
-
+                
                 var td1 = document.createElement('td');
                 var td2 = document.createElement('td');
                 var td3 = document.createElement('td');
@@ -320,17 +340,25 @@
                 tr.appendChild(td5);
                 tr.appendChild(td6);
                 tr.appendChild(td1);
-                // tr2.appendChild(tdc1);
-                // tbody.appendChild(tr2);
+              
                 tbody.appendChild(tr);
+                var deleteButton = document.createElement('button');
+    deleteButton.textContent = 'Delete';
+    deleteButton.classList.add('delete-button');
+
+    // Add a click event handler to the delete button
+    deleteButton.addEventListener('click', function () {
+        // Remove the parent row when the delete button is clicked
+        tr.remove();
+    });
+
+    // Append the delete button to the row
+    tr.appendChild(deleteButton);
                 
-                // tbody.appendChild(tr2);
-                // console.log(data);
                 document.getElementById('cancelInput').value = null;
             })
             .catch(error => {
-                // Handle any errors that occurred during the request
-                // ...
+                
             });
             document.getElementById('totalCancel').innerHTML = sl;
             document.getElementById('totalCancel').setAttribute('contentEditable', 'true');
@@ -414,9 +442,3 @@ document.getElementById('currentDate').textContent = formattedDate;
                     });
         }
         
-
-        </script>
-
-   
-</body>
-</html>

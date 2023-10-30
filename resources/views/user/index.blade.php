@@ -746,7 +746,7 @@
   }
 
   function SearchPC() {
-  var PCInput = document.getElementById("police_licence").value;
+  var PCInput = document.getElementById("police_licence").value.toUpperCase();
   var url = `https://pcc.police.gov.bd/ords/f?p=500:50::::RP:P50_TOKEN_ID:${PCInput}`;
   
   // Open the link in a new tab
