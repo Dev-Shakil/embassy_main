@@ -212,44 +212,12 @@
             .then(data => {
 
 
-                ArrayData.push(data[0]);
-                console.log(ArrayData)
-              
 
                 var tbody = document.getElementById('table_body');
                 var tr = document.createElement('tr');
                
                 tr.classList.add('border', 'border-black', 'p-0', 'text-[13px]', 'text-center', 'relative', 'group');
 
-            //     ArrayData.forEach(function(element, index, array) {
-            //         var td1 = document.createElement('td');
-            //     var td2 = document.createElement('td');
-            //     var td3 = document.createElement('td');
-            //     var td4 = document.createElement('td');
-            //     var td5 = document.createElement('td');
-            //     var td6 = document.createElement('td');
-            //     td1.setAttribute('contentEditable', 'true');
-            //     td1.textContent = index + 1;
-            //     td2.innerHTML = data[0].prof_name_arabic;
-            //     td3.innerHTML = data[0].visa_date2.substr(0, 4);
-                
-            //     td3.setAttribute('contentEditable', 'true');
-
-            //     td4.innerHTML = data[0].visa_no;
-            //     td5.innerHTML = data[0].spon_name_arabic;
-            //     td6.innerHTML = data[0].passport_number;
-                
-            //     tr.appendChild(td2);
-            //     tr.appendChild(td3);
-            //     tr.appendChild(td4);
-            //     tr.appendChild(td5);
-            //     tr.appendChild(td6);
-            //     tr.appendChild(td1);
-               
-                   
-            //    });
-              
-            //    tbody.appendChild(tr);
                 var td1 = document.createElement('td');
                 var td2 = document.createElement('td');
                 var td3 = document.createElement('td');
@@ -277,13 +245,14 @@
                 tbody.appendChild(tr);
                 // tbody.appendChild(tr2);
                 var deleteButton = document.createElement('button');
-    deleteButton.textContent = 'Delete';
+    deleteButton.textContent = 'D';
     deleteButton.classList.add('delete-button');
 
     // Add a click event handler to the delete button
     deleteButton.addEventListener('click', function () {
         // Remove the parent row when the delete button is clicked
         tr.remove();
+        deleteButton.remove();
     });
     
     // Append the delete button to the row
@@ -343,13 +312,14 @@
               
                 tbody.appendChild(tr);
                 var deleteButton = document.createElement('button');
-    deleteButton.textContent = 'Delete';
+    deleteButton.textContent = 'D';
     deleteButton.classList.add('delete-button');
 
     // Add a click event handler to the delete button
     deleteButton.addEventListener('click', function () {
         // Remove the parent row when the delete button is clicked
         tr.remove();
+        deleteButton.remove();
     });
 
     // Append the delete button to the row

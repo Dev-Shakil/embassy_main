@@ -16,184 +16,7 @@
                     @csrf
                     @foreach ($candidates as $candidate)
                     
-                    {{-- <div class="col-md-6">
-                      <label for="inputEmail4" class="form-label">Name</label>
-                      <input type="text" class="form-control" id="pname" name="pname" value="{{$candidate->name}}">
-                    </div>
-                    <div class="col-md-6">
-                      <label for="inputPassword4" class="form-label">Number</label>
-                      <input type="number" class="form-control" id="pnumber" name="pnumber" value={{$candidate->passport_number}}>
-                    </div>
-                    <div class="col-md-4">
-                      <label for="inputAddress" class="form-label">Passport Issue Date</label>
-                      <input type="date" class="form-control" id="pass_issue_date" name="pass_issue_date" value={{$candidate->passport_issue_date}}>
-                    </div>
-                    <div class="col-md-4">
-                      <label for="inputAddress" class="form-label">Passport Expire Date</label>
-                      <input type="date" class="form-control" id="pass_expire_date" name="pass_expire_date" value={{$candidate->passport_expire_date}}>
-                    </div>
-                    <div class="col-md-4">
-                      <label for="inputAddress" class="form-label">Date of birth</label>
-                      <input type="date" class="form-control" id="date_of_birth" name="date_of_birth" value={{$candidate->date_of_birth}}>
-                    </div>
-                    <div class="col-12">
-                      <label for="inputAddress2" class="form-label">Place of birth </label>
-                      <input type="text" class="form-control" id="place_of_birth" name="place_of_birth" placeholder="Apartment, studio, or floor" value={{$candidate->place_of_birth}}>
-                    </div>
-                    <div class="col-12">
-                      <label for="inputAddress2" class="form-label">Address </label>
-                      <input type="text" class="form-control" id="address" name="address" placeholder="Apartment, studio, or floor" value={{$candidate->address}}>
-                    </div>
-                    <div class="col-md-4">
-                      <label for="inputCity" class="form-label">Father's Name</label>
-                      <input type="text" class="form-control" id="father" name="father" value={{$candidate->father}}>
-                    </div>
-                    <div class="col-md-4">
-                      <label for="inputCity" class="form-label">Mother's Name</label>
-                      <input type="text" class="form-control" id="mother" name="mother" value={{$candidate->mother}}>
-                    </div>
-                    <div class="col-md-4">
-                      <label for="inputCity" class="form-label">Religion</label>
-                      <input type="text" class="form-control" id="religion" name="religion" value={{$candidate->religion}}>
-                    </div>
-                     
-                    <div class="col-md-3">
-                      <label for="inputState" class="form-label">Gender</label>
-                      <select id="inputState" class="form-select">
-                        <option selected>Choose...</option>
-                        <option value="male">Male</option>
-                        <option value="female">Female</option>
-                        <option value="other">Other</option>
-                      </select>
-                    </div>
-                    <div class="col-md-3">
-                      <label for="inputZip" class="form-label">Maritial Status</label>
-                      <input type="text" class="form-control" id="married" name="married" value={{$candidate->married}}>
-                    </div>
-                    <div class="col-md-6">
-                      <label for="inputZip" class="form-label">Medical Center Name</label>
-                      <input type="text" class="form-control" id="medical_center_name" name="medical_center_name" value={{$candidate->medical_center}}>
-                    </div>
-                    <div class="col-md-3">
-                      <label for="inputZip" class="form-label">Medical Issue Date</label>
-                      <input type="date" class="form-control" id="medical_issue_date" name="medical_issue_date" value={{$candidate->medical_issue_date}}>
-                    </div>
-                    <div class="col-md-3">
-                      <label for="inputZip" class="form-label">Medical Expire Date</label>
-                      <input type="date" class="form-control" id="medical_expire_date" name="medical_expire_date" value={{$candidate->medical_expire_date}}>
-                    </div>
-                    <div class="col-md-3">
-                      <label for="inputZip" class="form-label">Police Licence</label>
-                      <input type="number" class="form-control" id="police_licence" name="police_licence" value={{$candidate->police}}>
-                    </div>
-                    <div class="col-md-3">
-                      <label for="inputZip" class="form-label">Driving Licence</label>
-                      <input type="number" class="form-control" id="driving_licence" name="driving_licence" value={{$candidate->driving_licence}}>
-                    </div>
-                  
-                    <div class="col-12">
-                        <button type="submit" style="padding:10px; background-color: cornflowerblue; border:none; border-radius:5px" class="" id="btn1">Save</button>
-                    </div>
-                </form>
-
-                <h1 class="text-danger text-center my-5">Visa Information</h1>
-                <form action="" id="visaedit" method="post">
-                  @csrf
-                  <div class="row">
-                    <input type="hidden" name="uid" id="candidate_id" value="{{$id}}" />
-                    <div class="col">
-                      <!-- Name input -->
-                      <div class="form-outline">
-                        <input type="number" id="visa_no" name="visa_no" class="form-control" value="{{$candidate->visa_no}}"/>
-                        <label class="form-label" for="form8Example1">Visa NO</label>
-                      </div>
-                    </div>
-                    <div class="col">
-                      <!-- Email input -->
-                      <div class="form-outline">
-                        <input type="date" id="visa_date" name="visa_date" class="form-control" value="{{$candidate->visa_date}}"/>
-                        <label class="form-label" for="form8Example2">Visa Date</label>
-                      </div>
-                    </div>
-                    <div class="col">
-                      <!-- Email input -->
-                      <div class="form-outline">
-                        <input type="number" id="spon_id" name="spon_id" class="form-control" value="{{$candidate->spon_id}}"/>
-                        <label class="form-label" for="form8Example2">Sponsor ID</label>
-                      </div>
-                    </div>
-                    <div class="col">
-                      <!-- Email input -->
-                      <div class="form-outline">
-                        <input type="text" id="spon_name_arabic" name="spon_name_arabic" class="form-control" value="{{$candidate->spon_name_arabic}}"/>
-                        <label class="form-label" for="form8Example2">Sponsor Name(Arabic)</label>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <hr />
-                  
-                  <div class="row row-cols-2">
-                    <div class="col">
-                        <!-- Name input -->
-                        <div class="form-outline">
-                          <input type="text" id="salary" name="salary" class="form-control" value="{{$candidate->salary}}"/>
-                          <label class="form-label" for="form8Example2">Salary</label>
-                        </div>
-                      </div>
-                    <div class="col">
-                      <!-- Name input -->
-                      <div class="form-outline">
-                        <input type="text" id="spon_name_english" name="spon_name_english" class="form-control" value="{{$candidate->spon_name_english}}"/>
-                        <label class="form-label" for="form8Example2">Sponsor Name(english)</label>
-                      </div>
-                    </div>
-                    <div class="col">
-                      <!-- Name input -->
-                      <div class="form-outline">
-                        <input type="text" id="prof_name_arabic" name="prof_name_arabic" class="form-control" value="{{$candidate->prof_name_arabic}}"/>
-                        <label class="form-label" for="form8Example2">Profession Name(Arabic)</label>
-                      </div>
-                    </div>
-                    <div class="col">
-                      <!-- Name input -->
-                      <div class="form-outline">
-                        <input type="text" id="prof_name_english" name="prof_name_english" class="form-control" value="{{$candidate->prof_name_english}}"/>
-                        <label class="form-label" for="form8Example2">Profession Name(english)</label>
-                      </div>
-                    </div>
-                    <div class="col">
-                      <!-- Name input -->
-                      <div class="form-outline">
-                        <input type="text" id="mofa_no" name="mofa_no" class="form-control" value="{{$candidate->mofa_no}}"/>
-                        <label class="form-label" for="form8Example2">MOFA No</label>
-                      </div>
-                    </div>
-                    <div class="col">
-                      <!-- Name input -->
-                      <div class="form-outline">
-                        <input type="date" id="mofa_date" name="mofa_date" class="form-control" value="{{$candidate->mofa_date}}"/>
-                        <label class="form-label" for="form8Example2">MOFA Date</label>
-                      </div>
-                    </div>
-                    <div class="col">
-                      <!-- Name input -->
-                      <div class="form-outline">
-                        <input type="text" id="okala_no" name="okala_no" class="form-control" value="{{$candidate->okala_no}}"/>
-                        <label class="form-label" for="form8Example2">Okala No</label>
-                      </div>
-                    </div>
-                    <div class="col">
-                      <!-- Name input -->
-                      <div class="form-outline">
-                        <input type="text" id="musaned_no" name="musaned_no" class="form-control" value="{{$candidate->musaned_no}}"/>
-                        <label class="form-label" for="form8Example2">Musaned No</label>
-                      </div>
-                    </div>
-                    <br />
                     
-                </div> --}}
-
 
 
 
@@ -220,35 +43,51 @@
                         <input type="text" class="p-2 rounded-lg w-full uppercase form-control" name="pass_issue_date" id="pass_issue_date" value="<?php
                         $inputDate = $candidate->passport_issue_date;
         
-                        // Convert the date format
-                        $formattedDate = date('d-m-Y', strtotime($inputDate));
-        
-                        // Output the formatted date
-                        echo $formattedDate;
+                        if (!empty($inputDate)) {
+                            // Convert the date format
+                            $formattedDate = (new DateTime($inputDate))->format('d-m-Y');
+
+                            // Output the formatted date
+                            echo $formattedDate;
+                        } else {
+                            // Output null if the value is empty
+                            echo '';
+                        }
                         ?>" />
                       </div>
                       <div class="py-1">
                         <div class="font-bold text-lg">Passport Expire Date</div>
                         <input type="text" class="p-2 rounded-lg w-full uppercase form-control"  name="pass_expire_date" id="pass_expire_date" value="<?php
-                        $inputDate = $candidate->passport_expire_date;
+                        $pass_exp_inputDate = $candidate->passport_expire_date;
         
-                        // Convert the date format
-                        $formattedDate = date('d-m-Y', strtotime($inputDate));
-        
-                        // Output the formatted date
-                        echo $formattedDate;
+                        if (!empty($pass_exp_inputDate)) {
+                            // Convert the date format
+                            $formattedDate = (new DateTime($pass_exp_inputDate))->format('d-m-Y');
+
+                            // Output the formatted date
+                            echo $formattedDate;
+                        } else {
+                            // Output null if the value is empty
+                            echo '';
+                        }
                         ?>" />
                       </div>
                       <div class="py-1">
                         <div class="font-bold text-lg">Date Of Birth</div>
                         <input type="text" class="p-2 rounded-lg w-full uppercase form-control" name="date_of_birth" id="date_of_birth" value="<?php
-                        $inputDate = $candidate->date_of_birth;
+                        $dob_inputDate = $candidate->date_of_birth;
         
                         // Convert the date format
-                        $formattedDate = date('d-m-Y', strtotime($inputDate));
-        
-                        // Output the formatted date
-                        echo $formattedDate;
+                        if (!empty($dob_inputDate)) {
+                            // Convert the date format
+                            $formattedDate = (new DateTime($dob_inputDate))->format('d-m-Y');
+
+                            // Output the formatted date
+                            echo $formattedDate;
+                        } else {
+                            // Output null if the value is empty
+                            echo '';
+                        }
                         ?> "/>
                       </div>
                       <div class="py-1">
@@ -364,26 +203,36 @@
                       <div class="py-1">
                         <div class="font-bold text-lg">Medical Issue Date</div>
                         <input type="text" class="p-2 rounded-lg w-full uppercase form-control" id="medical_issue_date" name="medical_issue_date" value=" <?php
-                        $inputDate = $candidate->medical_issue_date;
+                        $med_iss_inputDate = $candidate->medical_issue_date;
         
-                        // Convert the date format
-                        $formattedDate = date('d-m-Y', strtotime($inputDate));
-        
-                        // Output the formatted date
-                        echo $formattedDate;
+                        if (!empty($med_iss_inputDate)) {
+                            // Convert the date format
+                            $formattedDate = (new DateTime($med_iss_inputDate))->format('d-m-Y');
+
+                            // Output the formatted date
+                            echo $formattedDate;
+                        } else {
+                            // Output null if the value is empty
+                            echo '';
+                        }
                         ?>"  >
                       </div>
                       <div class="py-1">
                         <div class="font-bold text-lg">Medical Expire Date</div>
                         <input type="text" name="medical_expire_date" id="medical_expire_date" value="<?php
-                        $inputDate = $candidate->medical_expire_date;
+                        $med_exp_inputDate = $candidate->medical_expire_date;
         
-                        // Convert the date format
-                        $formattedDate = date('d-m-Y', strtotime($inputDate));
-        
-                        // Output the formatted date
-                        echo $formattedDate;
-                        ?>" class="p-2 rounded-lg w-full form-control uppercase" >
+                        if (!empty($med_exp_inputDate)) {
+                            // Convert the date format
+                            $formattedDate = (new DateTime($med_exp_inputDate))->format('d-m-Y');
+
+                            // Output the formatted date
+                            echo $formattedDate;
+                        } else {
+                            // Output null if the value is empty
+                            echo '';
+                        }
+                        ?>" class="p-2 rounded-lg w-full form-control uppercase" />
                       </div>
                       <div class="py-1">
                         <div class="font-bold text-lg">Driver Licence Number</div>
@@ -394,10 +243,7 @@
                         <input type="text" class="p-2 rounded-lg w-full form-control uppercase" id="police_licence" name="police_licence" value="{{$candidate->police}}"  >
                       </div>
                     </div>
-                      {{-- <div class=" px-10 my-2">
-                        <div class="font-bold text-lg">Address</div>
-                        <input type="text" class="form-control p-2 rounded-lg w-full uppercase" placeholder="Address" name="address" placeholder="Apartment, studio, or floor" id="address" value={{$candidate->address}}>
-                      </div> --}}
+                      
                       
                     
                       <div class="text-center my-3">

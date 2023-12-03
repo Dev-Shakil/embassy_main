@@ -30,7 +30,7 @@ class MailController extends Controller
             Log::error('Email sending error: ' . $e->getMessage());
 
             // Return a response indicating the error to the user
-            return response()->view('errors.email_send', [], 500); // You need to create the corresponding view
+            // return response()->view('errors.email_send', [], 500); // You need to create the corresponding view
         }
     }
 }

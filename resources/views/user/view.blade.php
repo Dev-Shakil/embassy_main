@@ -44,11 +44,13 @@
                         <input type="text" readonly class="p-2 rounded-lg w-full uppercase form-control" name="pass_issue_date" id="pass_issue_date" value="<?php
                         $inputDate = $candidate->passport_issue_date;
         
-                        // Convert the date format
-                        $formattedDate = date('d-m-Y', strtotime($inputDate));
-        
-                        // Output the formatted date
-                        echo $formattedDate;
+                        if ($inputDate !== null) {
+                            // Convert the date format
+                            $formattedDate = date('d-m-Y', strtotime($inputDate));
+                        
+                            // Output the formatted date
+                            echo $formattedDate;
+                        }
                         ?>" />
                       </div>
                       <div class="py-1">
@@ -56,11 +58,13 @@
                         <input type="text" readonly class="p-2 rounded-lg w-full uppercase form-control"  name="pass_expire_date" id="pass_expire_date" value="<?php
                         $inputDate = $candidate->passport_expire_date;
         
-                        // Convert the date format
-                        $formattedDate = date('d-m-Y', strtotime($inputDate));
-        
-                        // Output the formatted date
-                        echo $formattedDate;
+                        if ($inputDate !== null) {
+                            // Convert the date format
+                            $formattedDate = date('d-m-Y', strtotime($inputDate));
+                        
+                            // Output the formatted date
+                            echo $formattedDate;
+                        }
                         ?>" />
                       </div>
                       <div class="py-1">
@@ -68,11 +72,13 @@
                         <input type="text" readonly class="p-2 rounded-lg w-full uppercase form-control" name="date_of_birth" id="date_of_birth" value="<?php
                         $inputDate = $candidate->date_of_birth;
         
-                        // Convert the date format
-                        $formattedDate = date('d-m-Y', strtotime($inputDate));
-        
-                        // Output the formatted date
-                        echo $formattedDate;
+                        if ($inputDate !== null) {
+                            // Convert the date format
+                            $formattedDate = date('d-m-Y', strtotime($inputDate));
+                        
+                            // Output the formatted date
+                            echo $formattedDate;
+                        }
                         ?> "/>
                       </div>
                       <div class="py-1">
@@ -111,11 +117,13 @@
                         <input type="text" readonly class="p-2 rounded-lg w-full uppercase form-control" id="medical_issue_date" name="medical_issue_date" value=" <?php
                         $inputDate = $candidate->medical_issue_date;
         
-                        // Convert the date format
-                        $formattedDate = date('d-m-Y', strtotime($inputDate));
-        
-                        // Output the formatted date
-                        echo $formattedDate;
+                        if ($inputDate !== null) {
+                            // Convert the date format
+                            $formattedDate = date('d-m-Y', strtotime($inputDate));
+                        
+                            // Output the formatted date
+                            echo $formattedDate;
+                        }
                         ?>"  >
                       </div>
                       <div class="py-1">
@@ -123,11 +131,13 @@
                         <input type="text" readonly name="medical_expire_date" id="medical_expire_date" value="<?php
                         $inputDate = $candidate->medical_expire_date;
         
-                        // Convert the date format
-                        $formattedDate = date('d-m-Y', strtotime($inputDate));
-        
-                        // Output the formatted date
-                        echo $formattedDate;
+                        if ($inputDate !== null) {
+                            // Convert the date format
+                            $formattedDate = date('d-m-Y', strtotime($inputDate));
+                        
+                            // Output the formatted date
+                            echo $formattedDate;
+                        }
                         ?>" class="p-2 rounded-lg w-full form-control uppercase" >
                       </div>
                       <div class="py-1">

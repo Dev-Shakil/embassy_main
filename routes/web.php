@@ -41,6 +41,8 @@ Route::any('/user/view/{id}', [UserController::class, 'view'])->name('user/view'
 Route::any('/user/personal_edit/{id}', [UserController::class, 'personal_edit'])->name('user/personal_edit');
 Route::any('/user/visa_edit/{id}', [UserController::class, 'visa_edit'])->name('user/visa_edit');
 Route::any('/user/embassy_list', [UserController::class, 'embassy_list'])->name('user/embassy_list');
+Route::any('/user/passengerList', [UserController::class, 'passengerList'])->name('user/passengerList');
+
 Route::any('/user/update', [UserController::class, 'update'])->name('user/update');
 Route::any('/user/print/{id}', [UserController::class, 'printer'])->name('user/print');
 Route::any('/user/get', [UserController::class, 'get'])->name('getpassport');

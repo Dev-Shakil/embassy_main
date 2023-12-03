@@ -175,11 +175,13 @@
                 <?php
                 $inputDate = $candidates[0]->date_of_birth;
 
-                // Convert the date format
-                $formattedDate = date('d-m-Y', strtotime($inputDate));
-
-                // Output the formatted date
-                echo $formattedDate;
+                if ($inputDate !== null) {
+                            // Convert the date format
+                            $formattedDate = date('d-m-Y', strtotime($inputDate));
+                        
+                            // Output the formatted date
+                            echo $formattedDate;
+                        }
                 ?>
               </p>
             </div>
@@ -497,10 +499,13 @@
                 $inputDate = $candidates[0]->passport_issue_date;
 
                 // Convert the date format
-                $formattedDate = date('d-m-Y', strtotime($inputDate));
-
-                // Output the formatted date
-                echo $formattedDate;
+                if ($inputDate !== null) {
+                            // Convert the date format
+                            $formattedDate = date('d-m-Y', strtotime($inputDate));
+                        
+                            // Output the formatted date
+                            echo $formattedDate;
+                        }
                 ?>
               </p>
             </div>
@@ -513,10 +518,13 @@
                 $inputDate = $candidates[0]->passport_expire_date;
 
                 // Convert the date format
-                $formattedDate = date('d-m-Y', strtotime($inputDate));
-
-                // Output the formatted date
-                echo $formattedDate;
+                if ($inputDate !== null) {
+                            // Convert the date format
+                            $formattedDate = date('d-m-Y', strtotime($inputDate));
+                        
+                            // Output the formatted date
+                            echo $formattedDate;
+                        }
                 ?>
               </p>
             </div>
@@ -529,7 +537,7 @@
           <div class="border-b border-black flex">
             <div  class="border-r border-black basis-4/12">
               <p class="text-lg w-full">
-                Duration of stay in the Kingdom: <span className="font-semibold">02 Years</span>
+                Duration of stay in the Kingdom: <span class="font-semibold">02 Years</span>
               </p>
             </div>
             <div  class="border-r border-black basis-4/12">
@@ -966,10 +974,13 @@
                 $inputDate = $candidates[0]->passport_issue_date;
 
                 // Convert the date format
-                $formattedDate = date('d-m-Y', strtotime($inputDate));
-
-                // Output the formatted date
-                echo $formattedDate;
+                if ($inputDate !== null) {
+                            // Convert the date format
+                            $formattedDate = date('d-m-Y', strtotime($inputDate));
+                        
+                            // Output the formatted date
+                            echo $formattedDate;
+                        }
                 ?>
               </span>
             </li>
@@ -1208,10 +1219,13 @@
                   $inputDate = $candidates[0]->passport_expire_date;
 
                   // Convert the date format
-                  $formattedDate = date('d-m-Y', strtotime($inputDate));
-
-                  // Output the formatted date
-                  echo $formattedDate;
+                  if ($inputDate !== null) {
+                            // Convert the date format
+                            $formattedDate = date('d-m-Y', strtotime($inputDate));
+                        
+                            // Output the formatted date
+                            echo $formattedDate;
+                        }
                   ?>
               </td>
               <td class=" font-bold text-xl text-end">
@@ -1228,10 +1242,13 @@
                   $inputDate = $candidates[0]->date_of_birth;
 
                   // Convert the date format
-                  $formattedDate = date('d-m-Y', strtotime($inputDate));
-
-                  // Output the formatted date
-                  echo $formattedDate;
+                  if ($inputDate !== null) {
+                            // Convert the date format
+                            $formattedDate = date('d-m-Y', strtotime($inputDate));
+                        
+                            // Output the formatted date
+                            echo $formattedDate;
+                        }
                   ?>
                   <br />
                   @php echo $age; @endphp
@@ -1265,21 +1282,24 @@
               <td class="uppercase"></td>
               <td class="uppercase"></td>
               <td class=" font-bold text-xl">{{$candidates[0]->medical_center}}</br>Issue Date:   <?php
-                $inputDate = $candidates[0]->medical_issue_date;
-
-                // Convert the date format
-                $formattedDate = date('d-m-Y', strtotime($inputDate));
-
-                // Output the formatted date
-                echo $formattedDate;
+                if ($inputDate !== null) {
+                            // Convert the date format
+                            $formattedDate = date('d-m-Y', strtotime($inputDate));
+                        
+                            // Output the formatted date
+                            echo $formattedDate;
+                        }
                 ?>  </br>Expire Date:   <?php
                   $inputDate = $candidates[0]->medical_expire_date;
 
                   // Convert the date format
-                  $formattedDate = date('d-m-Y', strtotime($inputDate));
-
-                  // Output the formatted date
-                  echo $formattedDate;
+                  if ($inputDate !== null) {
+                            // Convert the date format
+                            $formattedDate = date('d-m-Y', strtotime($inputDate));
+                        
+                            // Output the formatted date
+                            echo $formattedDate;
+                        }
                   ?></td>
               <td class=" font-bold text-xl text-end"> Medical/ <span class="arb">المديكل </span></td>
             </tr>
@@ -1342,7 +1362,127 @@
       </div>
      <!-- ksa 4th page design ends-->
 
+     {{-- <div class=" bg-white px-7 pt-[432px] pb-10" contentEditable="true">
+      <div class="h-[1340px] relative">
+        <p class="text-center text-lg px-7 underline font-bangla">
+          নিম্নলিখিত সৌদিআরবগামী ২ (দুই) জন কর্মী প্রেরণ সংক্রান্ত
+          রিক্রুটিং এজেন্সী সাল্লু এয়ার সার্ভিসেস (আরএল-২০২৩) এর
+          অঙ্গীকারনামা।
+        </p>
+        <table class="w-full my-2">
+          <thead>
+            <tr class="[&>td]:border [&>td]:border-black font-bangla [&>td]:py-1 text-[12px] text-center">
+              <td>ক্র/নং</td>
+              <td>কর্মীর নাম</td>
+              <td>পাসপোর্ট নম্বর</td>
+              <td>ভিসা নম্বর</td>
+              <td>নিয়োগকারীর নাম</td>
+              <td>পদের নাম</td>
 
+              <td>অভিবাসন ব্যয়</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="[&>td]:border [&>td]:border-black [&>td]:p text-[11px] text-center relative group">
+              <td>1</td>
+              <td class="uppercase">John Doe</td>
+              <td class="uppercase">AB123456</td>
+              <td>123456</td>
+              <td class="uppercase">Company A</td>
+              <td class="uppercase">Engineer</td>
+              <td class="" contentEditable="true">1,65,000</td>
+              
+            </tr>
+          
+            <tr class="[&>td]:border [&>td]:border-black [&>td]:p text-[11px] text-center relative group">
+              <td>2</td>
+              <td class="uppercase">Jane Doe</td>
+              <td class="uppercase">CD789012</td>
+              <td>789012</td>
+              <td class="uppercase">Company B</td>
+              <td class="uppercase">Designer</td>
+              <td class="" contentEditable="true">1,50,000</td>
+              
+            </tr>
+          
+            <!-- Repeat similar rows for 3 to 6 -->
+          
+            <tr class="[&>td]:border [&>td]:border-black [&>td]:p text-[11px] text-center relative group">
+              <td>6</td>
+              <td class="uppercase">Alex Smith</td>
+              <td class="uppercase">FG345678</td>
+              <td>345678</td>
+              <td class="uppercase">Company C</td>
+              <td class="uppercase">Manager</td>
+              <td class="" contentEditable="true">1,80,000</td>
+              
+            </tr>
+          </tbody>
+        </table>
+
+        <p class="text-[16px] text-justify w-[95%] pl-7 leading-5 pt-2 font-bangla ">
+          আমি সাল্লু এয়ার সার্ভিসেস (আরএল-২০২২)
+          স্বত্ত্বাধিকারী/ব্যবস্থাপনা অংশীদার /ব্যবস্থাপনা পরিচালক এই মর্মে
+          অঙ্গীকার করছি যে, চাকুরীর উদ্দেশ্যে সৌদিআরব গামী দেশের বিভিন্ন
+          নিয়োগকর্তার অধীনে বর্ণিত {toBengaliNumber(passengers.length)} (
+          {toBengaliWord(passengers.length)}) জন কর্মীর একক বহির্গমন ছাড়পত্র
+          গ্রহণের নিমিত্তে কর্মীদের ভিসা, চুক্তিপত্রসহ অন্যান্য প্রয়োজনীয়
+          কাগজপত্রাদি দাখিল করলাম, যা সঠিক আছে।
+        </p>
+        <h3 class="text-center text-xl absolute bottom-[34%] right-7">
+          চলমান পাতা - ২
+        </h3>
+      </div>
+      <p class="text-[16px] leading-9 h-[1340px] relative">
+        <h3 class="text-center text-xl">পাতা নং - ২</h3>
+        <br />{" "}
+        <p class="text-justify px-7">
+          উপর্যুক্ত কর্মীদের সৌদিআরব বিমানবন্দরে নিয়োগকর্তা বা নিয়োগ কর্তার
+          প্রতিনিধি গ্রহণ করবেন এবং বর্ণিত কর্মীগণকে সৌদিআরবগামী দেশে প্রেরণর
+          জন্য বহির্গমন ছাড়পত্র গ্রহনের পর উক্ত দেশ ব্যতিত অন্য কোনো দেশে প্রেরন
+          করবনা মর্মে অঙ্গীকার করছি। আমি আরও অঙ্গীকার করছি যে, উপযুক্ত কর্মীদের
+          ভিসা,নিয়োগপত্র এবং চুক্তিপত্র সঠিক আছে। বিদেশ গমণের পর কোন কারণে
+          কর্মীদের বিমানবন্দর হতে নিয়োগকর্তা গ্রহণ না করে অথবা কর্মীদের ভিসা জাল
+          বলে প্রমাণিত হয় অথবা অন্য কোনকারণে চাকুরীতে সমস্যার সৃষ্টি হয় তাহলে
+          উক্ত কর্মীর/কর্মীদের সকল দায়- দায়িত্ব আমি বা আমার রিক্রুটিং এজেন্সী
+          বহন করতে বাধ্য থাকব।
+        </p>
+        <br />
+        <br />
+        <h3 class="text-center text-xl absolute bottom-[34%] right-7">
+          চলমান পাতা - ৩
+        </h3>
+      </p>
+
+      <div class="">
+        <h3 class="text-center text-xl">পাতা নং - ৩</h3>
+        <br />
+        <p class="text-[16px] leading-8 ">
+          উপর্যুক্ত অঙ্গীকার নামায় বর্ণিত বিষয়ের কোন ব্যত্যয় ঘটলে প্রবাসীকল্যাণ
+          ও বৈদেশিক কর্মসংস্থান মন্ত্রণালয় অথবা জনশক্তি কর্মসংস্থান ও
+          প্রশিক্ষণব্যুরো আমার বা আমার রিক্রুটিংএজেন্সীর বিরুদ্ধে{" "}
+          <span class="font-semibold">
+            {" "}
+            বৈদেশিক কর্মসংসস্থান ও অভিবাসী আইন-২০১৩
+          </span>{" "}
+          অনুযায়ী যে কোনব্যবস্থা গ্রহণ করতে পারবে।
+          <br />
+          <br /> এই অঙ্গীকারনামা আমি সেচ্ছায়, স্বজ্ঞানে, সুস্থ্য মস্তিস্কে এবং
+          কাহারো দ্বারা প্ররোচিত না হয়ে স্বাক্ষর করলাম।
+        </p>
+        <div class="flex flex-end justify-end mr-10">
+          <p class="text-start px-10 text-lg pt-[2rem] font-bangla leading-10">
+            রিক্রুটিং এজেন্সীর নাম : {agency_name?.bangla}
+            <br />
+            মালিকের নাম : {admin?.bangla}
+            <br />
+            <span class="">মালিকের স্বাক্ষর ও সীল :</span>
+            <br />
+            তারিখ :{toBengaliNumber(dayjs().format("DD-MM-YYYY"))}
+          </p>
+        </div>
+      </div>
+    </div> --}}
     <script src="js/index.js"></script>
     <script>
         JsBarcode("#barcode1", "{{$candidates[0]->visa_no}}", {

@@ -5,12 +5,30 @@ namespace App\Http\Controllers;
 use App\Models\Candidates;
 use App\Models\Visa;
 use App\Models\User;
+use DateTime;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
+
+    public function passengerList(Request $request){
+
+        if(Session::get('user')){
+            if($request->isMethod('GET')){
+               
+                $candidates = DB::table('candidates')
+                        ->leftJoin('visas', 'candidates.id', '=', 'visas.candidate_id')
+                        ->select('candidates.*', 'visas.visa_no', 'visas.mofa_no', 'visas.spon_id')->where('candidates.agency', '=', Session::get('user'))
+                        // ->select('candidates.*', 'visas.*')->where('candidates.agency', '=', Session::get('user'))
+                        ->get();
+                $user = DB::table('user')->select('*')->where('email','=', Session::get('user'))->first();
+                // dd($user);
+                return view('user.passengerList', compact('candidates', 'user'));
+            }
+        };
+    }
    public function index(Request $request){
 
     if(Session::get('user')){
@@ -141,11 +159,12 @@ class UserController extends Controller
             ->leftJoin('visas', 'candidates.id', '=', 'visas.candidate_id')
             ->select('candidates.*', 'visas.*')->where('candidates.id', '=', $id)
             ->get();
+            $user = DB::table('user')->select('*')->where('email','=', Session::get('user'))->first();
     // dd($candidates);        
     // return view('user.addvisa', compact('id', 'candidates'));
 
 
-            return view('user.addvisa', ['id' => $id], compact('id', 'candidates'));
+            return view('user.addvisa', ['id' => $id], compact('id', 'candidates','user'));
             }
             else{
          
@@ -220,8 +239,9 @@ class UserController extends Controller
                     ->select('candidates.*', 'visas.*')
                     ->where('candidates.agency', '=', Session::get('user'))
                     ->get();
+            $user = DB::table('user')->select('*')->where('email','=', Session::get('user'))->first();
         // dd($candidates);
-            return view('user.embassy_list', compact('candidates'));
+            return view('user.embassy_list', compact('candidates','user'));
         }
         else{
             return redirect(url('/'));
@@ -236,8 +256,9 @@ class UserController extends Controller
                         ->leftJoin('visas', 'candidates.id', '=', 'visas.candidate_id')
                         ->select('candidates.*', 'visas.*')->where('candidates.id', '=', $id)
                         ->get();
+                $user = DB::table('user')->select('*')->where('email','=', Session::get('user'))->first();
                 // dd($candidates);        
-                return view('user.edit', compact('id', 'candidates'));
+                return view('user.edit', compact('id', 'candidates', 'user'));
             }
         }
         else{
@@ -252,8 +273,9 @@ class UserController extends Controller
                         ->leftJoin('visas', 'candidates.id', '=', 'visas.candidate_id')
                         ->select('candidates.*', 'visas.*')->where('candidates.id', '=', $id)
                         ->get();
-                // dd($candidates);        
-                return view('user.view', compact('id', 'candidates'));
+                // dd($candidates);
+                $user = DB::table('user')->select('*')->where('email','=', Session::get('user'))->first();        
+                return view('user.view', compact('id', 'candidates','user'));
             }
         } else{
             return redirect(url('/'));
@@ -263,6 +285,15 @@ class UserController extends Controller
     }
     public function delete($id, Request $request) {
         if(Session::get('user')){
+            if($request->isMethod('GET')){
+                $candidates = DB::table('candidates')
+                        ->leftJoin('visas', 'candidates.id', '=', 'visas.candidate_id')
+                        ->select('candidates.*', 'visas.*')->where('candidates.id', '=', $id)
+                        ->get();
+                // dd($candidates);
+                $user = DB::table('user')->select('*')->where('email','=', Session::get('user'))->first();        
+                return view('user.view', compact('id', 'candidates','user'));
+            }
         $candidate = Candidates::find($id);
         if ($candidate) {
             $target = (Visa::where('candidate_id', $id)->delete());
@@ -298,8 +329,9 @@ class UserController extends Controller
                         ->leftJoin('visas', 'candidates.id', '=', 'visas.candidate_id')
                         ->select('candidates.*')->where('candidates.id', '=', $id)
                         ->get();
+                $user = DB::table('user')->select('*')->where('email','=', Session::get('user'))->first();
                 // dd($candidates);        
-                return view('user.addvisa', compact('id', 'candidates'));
+                return view('user.addvisa', compact('id', 'candidates','user'));
             }
         }
         else{
@@ -311,30 +343,48 @@ class UserController extends Controller
     public function personal_edit($id, Request $request){
         // dd(1, $id, 2, $request->all());
         if(Session::get('user')){
+            if($request->isMethod('GET')){
+               
+                $candidates = DB::table('candidates')
+                        ->leftJoin('visas', 'candidates.id', '=', 'visas.candidate_id')
+                        ->select('candidates.*', 'visas.visa_no', 'visas.mofa_no', 'visas.spon_id')->where('candidates.agency', '=', Session::get('user'))
+                        // ->select('candidates.*', 'visas.*')->where('candidates.agency', '=', Session::get('user'))
+                        ->get();
+                $user = DB::table('user')->select('*')->where('email','=', Session::get('user'))->first();
+                // dd($user);
+                return view('user.passengerList', compact('candidates', 'user'));
+            }
             $candidate = Candidates::where('id', $id)->first();
             if($candidate){
             $candidate->name = strtoupper($request->pname);
             $candidate->passport_number = strtoupper($request->pnumber);
-            $issueDate = \DateTime::createFromFormat('d/m/Y', $request->pass_issue_date);
-            if ($issueDate !== false) {
-                $candidate->passport_issue_date = $issueDate->format('Y-m-d');
-            } else {
-              
-            }
-
+            
            
-            $expireDate = \DateTime::createFromFormat('d/m/Y', $request->pass_expire_date);
-            if ($expireDate !== false) {
-                $candidate->passport_expire_date = $expireDate->format('Y-m-d');
-            } else {
-               
+            
+
+            // Passport Issue Date
+            $pass_issueDate = null;
+            if ($request->has('pass_issue_date') && $request->pass_issue_date !== '') {
+                $createdDate = DateTime::createFromFormat('d/m/Y', $request->pass_issue_date);
+                $pass_issueDate = $createdDate !== false ? $createdDate->format('Y-m-d') : null;
             }
-            $birthDate = \DateTime::createFromFormat('d/m/Y', $request->date_of_birth);
-                if ($birthDate !== false) {
-                    $candidate->date_of_birth = $birthDate->format('Y-m-d');
-                } else {
-                   
-                }
+            $candidate->passport_issue_date = $pass_issueDate;
+
+            // Passport Expire Date
+            $pass_expireDate = null;
+            if ($request->has('pass_expire_date') && $request->pass_expire_date !== '') {
+                $createdDate = DateTime::createFromFormat('d/m/Y', $request->pass_expire_date);
+                $pass_expireDate = $createdDate !== false ? $createdDate->format('Y-m-d') : null;
+            }
+            $candidate->passport_expire_date = $pass_expireDate;
+
+            // Date of Birth
+            $date_of_birth = null;
+            if ($request->has('date_of_birth') && $request->date_of_birth !== '') {
+                $createdDate = DateTime::createFromFormat('d/m/Y', $request->date_of_birth);
+                $date_of_birth = $createdDate !== false ? $createdDate->format('Y-m-d') : null;
+            }
+            $candidate->date_of_birth = $date_of_birth;
             // $candidate->date_of_birth = $request->date_of_birth;
             $candidate->place_of_birth = strtoupper($request->place_of_birth);
             $candidate->address = strtoupper($request->address);
@@ -343,20 +393,27 @@ class UserController extends Controller
             $candidate->religion = strtoupper($request->religion);
             $candidate->married = $request->married;
             $candidate->medical_center = strtoupper($request->medical_center_name);
-            $issueDate = \DateTime::createFromFormat('d/m/Y', $request->medical_issue_date);
-            if ($issueDate !== false) {
-                $candidate->medical_issue_date = $issueDate->format('Y-m-d');
-            } else {
-             
-            }
 
-       
-            $expireDate = \DateTime::createFromFormat('d/m/Y', $request->medical_expire_date);
-            if ($expireDate !== false) {
-                $candidate->medical_expire_date = $expireDate->format('Y-m-d');
-            } else {
+            
+
+
            
+            // Medical Issue Date
+            $medical_issueDate = null;
+            if ($request->has('medical_issue_date') && $request->medical_issue_date !== '') {
+                $createdDate = DateTime::createFromFormat('d/m/Y', $request->medical_issue_date);
+                $medical_issueDate = $createdDate !== false ? $createdDate->format('Y-m-d') : null;
             }
+            $candidate->medical_issue_date = $medical_issueDate;
+
+            // Medical Expire Date
+            $medical_expireDate = null;
+            if ($request->has('medical_expire_date') && $request->medical_expire_date !== '') {
+                $createdDate = DateTime::createFromFormat('d/m/Y', $request->medical_expire_date);
+                $medical_expireDate = $createdDate !== false ? $createdDate->format('Y-m-d') : null;
+            }
+            $candidate->medical_expire_date = $medical_expireDate;
+
             $candidate->police = strtoupper($request->police_licence);
             $candidate->driving_licence = strtoupper($request->driving_licence);
             $candidate->is_delete = 0;
@@ -400,6 +457,15 @@ class UserController extends Controller
 
     public function visa_edit($id, Request $request){
         if(Session::get('user')){
+            if($request->isMethod('GET')){
+                $candidates = DB::table('candidates')
+                        ->leftJoin('visas', 'candidates.id', '=', 'visas.candidate_id')
+                        ->select('candidates.*')->where('candidates.id', '=', $id)
+                        ->get();
+                $user = DB::table('user')->select('*')->where('email','=', Session::get('user'))->first();
+                // dd($candidates);        
+                return view('user.addvisa', compact('id', 'candidates','user'));
+            }
             $visa = Visa::where('candidate_id', $id)->first();
             // dd($visa,2, $id);
             if($visa){
@@ -464,6 +530,16 @@ class UserController extends Controller
 
     public function update(Request $request){
         if(Session::get('user')){
+            if($request->isMethod('GET')){
+                $candidates = DB::table('candidates')
+                ->leftJoin('visas', 'candidates.id', '=', 'visas.candidate_id')
+                ->select('candidates.*', 'visas.visa_no', 'visas.mofa_no', 'visas.spon_id')->where('candidates.agency', '=', Session::get('user'))
+                // ->select('candidates.*', 'visas.*')->where('candidates.agency', '=', Session::get('user'))
+                ->get();
+                $user = DB::table('user')->select('*')->where('email','=', Session::get('user'))->first();
+                // dd($candidates);        
+                return view('user.addvisa', compact('id', 'candidates','user'));
+            }
             $name = request('uname');
             $phn = request('wsphn');
             // $arabic_name = request('arabic_name');
